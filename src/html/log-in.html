@@ -10,6 +10,8 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
+    <link rel="stylesheet" href="../css/log-in.css">
+
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link href="../js/bootstrap.min.js">
 
@@ -18,12 +20,56 @@
 </head>
 
 <body>
-    <div id="header">
+    <div class="header-footer">
+        <div id="header" class="col">
+            <h1>News Management System</h1>
+        </div>
     </div>
-    <div id="body">
+    <div class="container">
+        <div id="body" class="row justify-content-around">
+            <div id="welcome" class="info-box btn-light col-3 card">
+                <div class="card-body">
+                    <h4 class="card-title">Welcome to NMS.</h4>
+                    <p class="card-text"> This is the web application for XYZ School's News management system</p>
+                </div>
+            </div>
+            <div id="log-feature" class="info-box btn-light col-3 card">
+                <div id="log" class="card-body">
+                    <h4 class="card-title">What's new?</h4>
+                    <ul class="card-text">
+                        <li>App release</li>
+                        <li>Minor fix</li>
+                    </ul>
+                </div>
+                <div id="feature" class="card-body">
+                    <h4 class="card-title">What does this app do?</h4>
+                    <p class="card-text">NMS is the portal for the management system of XYZ's school. Students can upload their files, admins and manager can manage the uploads within this application.</p>
+                </div>
+            </div>
+            <div id="log-in" class="info-box btn-light col-4 card">
+                <div class="card-body">
+                    <h4 class="card-title">Sign in</h4>
+                    <form>
+                        <!--TODO: change validation js-->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="footer">
+    <div id="footer" class="header-footer">
+        <span>@ 2019 2-1640 group.</span>
     </div>
+
+    <script src="../js/validation.js"></script>
 </body>
 
 </html>
