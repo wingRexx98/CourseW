@@ -1,3 +1,4 @@
+/* Header and Footer */
 .header-footer {
   background-color: #e2e6ea;
   width: 100%;
@@ -16,15 +17,11 @@
   padding: 12.5px;
 }
 
+/* Body */
 #body {
   margin: 50px 0;
-  height: 500px;
+  min-height: 500px;
   width: 100%;
-}
-
-.info-box {
-  height: 100%;
-  background-color: #e2e6ea;
 }
 
 /*# sourceMappingURL=final.css.map */
