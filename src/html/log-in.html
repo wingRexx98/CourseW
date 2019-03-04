@@ -10,9 +10,9 @@
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
 
-    <link rel="stylesheet" href="../css/log-in.css">
+    <link rel="stylesheet" href="../css/final.css">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link href="../js/bootstrap.min.js">
 
     <script src="../js/jquery-3.3.1.min.js"></script>
@@ -27,37 +27,37 @@
     </div>
     <div class="container">
         <div id="body" class="row justify-content-around">
-            <div id="welcome" class="info-box btn-light col-3 card">
+            <div id="welcome" class="info-box btn-light col-9 card">
                 <div class="card-body">
                     <h4 class="card-title">Welcome to NMS.</h4>
                     <p class="card-text"> This is the web application for XYZ School's News management system</p>
                 </div>
             </div>
-            <div id="log-feature" class="info-box btn-light col-3 card">
-                <div id="log" class="card-body">
+            <div id="log-feature" class="info-box col-9 card">
+                <div id="log" class="card-body row btn-light">
                     <h4 class="card-title">What's new?</h4>
                     <ul class="card-text">
                         <li>App release</li>
                         <li>Minor fix</li>
                     </ul>
                 </div>
-                <div id="feature" class="card-body">
+                <div id="feature" class="card-body row btn-light">
                     <h4 class="card-title">What does this app do?</h4>
                     <p class="card-text">NMS is the portal for the management system of XYZ's school. Students can upload their files, admins and manager can manage the uploads within this application.</p>
                 </div>
             </div>
-            <div id="log-in" class="info-box btn-light col-4 card">
+            <div id="log-in" class="info-box btn-light col-12 card">
                 <div class="card-body">
                     <h4 class="card-title">Sign in</h4>
                     <form>
                         <!--TODO: change validation js-->
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email address">
+                            <label for="password">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email address">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password">
                         </div>
                         <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>
