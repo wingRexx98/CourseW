@@ -1,0 +1,29 @@
+@import 'variables';
+
+/* Header and Footer */
+.header-footer {
+    background-color: $default-gray;
+    width: 100%;
+}
+
+#header {
+    height: 100px;
+    font-style: italic;
+    font-family: cursive;
+    padding: 25px;
+}
+
+#footer {
+    position: absolute;
+    height: 50px;
+    padding: 12.5px;
+}
+
+/* Body */
+#body {
+    margin: 50px 0;
+    min-height: 415px;
+    width: 100%;
+
+
+}
