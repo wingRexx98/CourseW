@@ -1,1 +1,7 @@
+/* outline */
 $default-gray: #e2e6ea !default;
+$min-height-body: 415px;
+$max-height-body: 600px;
+
+/* card */
+$max-height-card-text: $max-height-body * 3 / 5;

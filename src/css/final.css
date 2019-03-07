@@ -1,3 +1,5 @@
+/* outline */
+/* card */
 /* Header and Footer */
 .header-footer {
   background-color: #e2e6ea;
@@ -19,9 +21,20 @@
 
 /* Body */
 #body {
-  margin: 50px 0;
+  margin: 30px 0;
   min-height: 415px;
+  max-height: 600px;
   width: 100%;
 }
+#body .card-text {
+  margin-bottom: 20px;
+}
+#body .long-text {
+  overflow: scroll;
+  max-height: 360px;
+}
+
+/* outline */
+/* card */
 
 /*# sourceMappingURL=final.css.map */
