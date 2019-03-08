@@ -26,15 +26,16 @@
   max-height: 600px;
   width: 100%;
 }
-#body .card-text {
-  margin-bottom: 20px;
-}
 #body .long-text {
   overflow: scroll;
   max-height: 360px;
+  margin-bottom: 20px;
 }
 
 /* outline */
 /* card */
+#upload form {
+  padding: 0;
+}
 
 /*# sourceMappingURL=final.css.map */

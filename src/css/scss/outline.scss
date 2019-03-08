@@ -26,12 +26,9 @@
   max-height: $max-height-body;
   width: 100%;
 
-  .card-text {
-      margin-bottom: 20px;
-  }
-
   .long-text {
     overflow: scroll;
     max-height: $max-height-card-text;
+    margin-bottom: 20px;
   }
 }
