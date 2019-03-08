@@ -2,33 +2,32 @@
 
 /* Header and Footer */
 .header-footer {
-  background-color: $default-gray;
-  width: 100%;
+    background-color: $default-gray;
+    width: 100%;
 }
 
 #header {
-  height: 100px;
-  font-style: italic;
-  font-family: cursive;
-  padding: 25px;
+    height: 100px;
+    font-style: italic;
+    font-family: cursive;
+    padding: 25px;
 }
 
 #footer {
-  position: absolute;
-  height: 50px;
-  padding: 12.5px;
+    position: absolute;
+    height: 50px;
+    padding: 12.5px;
 }
 
 /* Body */
 #body {
-  margin: 30px 0;
-  min-height: $min-height-body;
-  max-height: $max-height-body;
-  width: 100%;
+    margin: 30px 0;
+    min-height: $min-height-body;
+    max-height: $max-height-body;
+    width: 100%;
 
-  .long-text {
-    overflow: scroll;
-    max-height: $max-height-card-text;
-    margin-bottom: 20px;
-  }
+    .long-text {
+        max-height: $max-height-card-text;
+        margin-bottom: 20px;
+    }
 }
