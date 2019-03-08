@@ -37,5 +37,8 @@
 #upload form {
   padding: 0;
 }
+#upload #file .card-body {
+  padding: 0;
+}
 
 /*# sourceMappingURL=final.css.map */
