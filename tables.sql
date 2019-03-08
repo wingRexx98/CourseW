@@ -51,3 +51,7 @@ CREATE TABLE IF NOT EXISTS comment (
     PRIMARY KEY (comment_id),
     FOREIGN KEY (submission_id) REFERENCES submission(submission_id)
 );
+
+INSERT INTO `r69420`.`faculty` (`faculty_name`) VALUES ('a');
+INSERT INTO `r69420`.`role` (`role_name`) VALUES ('admin');
+INSERT INTO `r69420`.`user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('1', '1', 'admin@m.com', 'admin');
