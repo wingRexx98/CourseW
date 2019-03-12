@@ -125,66 +125,68 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </ol>
                     </div>
                 </div>
-                <div id="upload" class="info-box col-25 card border-0">
+                <div id="upload" class="info-box col-25">
                     <form method="post" enctype="multipart/form-data" class="row justify-content-around">
-                        <div id="terms" class="card-body col-17 card btn-light">
-                            <h4 class="card-title">Terms And Agreements</h4>
-                            <div class="card-text long-text overflow-auto">
-                                <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at cursus quam.
-                                    Integer
-                                    nunc
-                                    tellus, pretium sit amet congue a, sollicitudin ut orci. Fusce sodales fermentum
-                                    cursus.
-                                    Cras nonhendrerit nisl, quis faucibus lacus. Mauris sollicitudin, lacus in
-                                    aliquet
-                                    laoreet,
-                                    tortor arcu semper ipsum, vitae rhoncus sem dui nec velit. Etiam vel venenatis
-                                    metus.
-                                    Mauris
-                                    luctus, lectus sed molestie dictum, lectus ligula vestibulum urna, vel
-                                    sollicitudin
-                                    nunc
-                                    magna sodales odio. Pellentesque habitant morbi tristique senectus et netus et
-                                    malesuada
-                                    fames ac turpis egestas. Integer est nunc, efficitur id lacus eu, tristique
-                                    laoreet
-                                    nisi.
-                                    Fusce et justo vitae felis accumsan tincidunt. Praesent bibendum justo et lectus
-                                    pharetra
-                                    porttitor. Ut mattis turpis quis lorem gravida blandit. Integer dictum, risus ut
-                                    finibus
-                                    tempor, neque nibh cursus neque, sed aliquet nisl massa et mi. Mauris vehicula
-                                    arcu
-                                    vel
-                                    quam
-                                    lobortis, ut mollis enim placerat.
+                        <div id="terms" class="col-17 card btn-light">
+                            <div class="card-body">
+                                <h4 class="card-title">Terms And Agreements</h4>
+                                <div class="card-text long-text overflow-auto">
+                                    <span>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at cursus quam.
+                                        Integer
+                                        nunc
+                                        tellus, pretium sit amet congue a, sollicitudin ut orci. Fusce sodales fermentum
+                                        cursus.
+                                        Cras nonhendrerit nisl, quis faucibus lacus. Mauris sollicitudin, lacus in
+                                        aliquet
+                                        laoreet,
+                                        tortor arcu semper ipsum, vitae rhoncus sem dui nec velit. Etiam vel venenatis
+                                        metus.
+                                        Mauris
+                                        luctus, lectus sed molestie dictum, lectus ligula vestibulum urna, vel
+                                        sollicitudin
+                                        nunc
+                                        magna sodales odio. Pellentesque habitant morbi tristique senectus et netus et
+                                        malesuada
+                                        fames ac turpis egestas. Integer est nunc, efficitur id lacus eu, tristique
+                                        laoreet
+                                        nisi.
+                                        Fusce et justo vitae felis accumsan tincidunt. Praesent bibendum justo et lectus
+                                        pharetra
+                                        porttitor. Ut mattis turpis quis lorem gravida blandit. Integer dictum, risus ut
+                                        finibus
+                                        tempor, neque nibh cursus neque, sed aliquet nisl massa et mi. Mauris vehicula
+                                        arcu
+                                        vel
+                                        quam
+                                        lobortis, ut mollis enim placerat.
 
-                                    Ut non tempus enim, non sodales neque. Aenean eget enim sit amet nulla tempus
-                                    sagittis.
-                                    Maecenas ullamcorper dui nec lectus finibus porta. Etiam ultricies et nunc at
-                                    fermentum.
-                                    Suspendisse porta tellus quis arcu interdum, non finibus dolor consectetur.
-                                    Vestibulum
-                                    ante
-                                    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris
-                                    tempus
-                                    quis
-                                    nisi eu tincidunt. Nullam pharetra, nibh non facilisis tincidunt, eros ipsum
-                                    eleifend
-                                    arcu,
-                                    ac dignissim ligula ex non magna. Sed rutrum enim nulla, ut interdum nunc
-                                    egestas
-                                    eu.
-                                </span>
-                            </div>
-                            <div class="card-text">
-                                <input id="terms-check-box" type="checkbox" name="checkbox" value="checked" required>
-                                <label for="terms-check-box">I agree with these term and condition</label>
+                                        Ut non tempus enim, non sodales neque. Aenean eget enim sit amet nulla tempus
+                                        sagittis.
+                                        Maecenas ullamcorper dui nec lectus finibus porta. Etiam ultricies et nunc at
+                                        fermentum.
+                                        Suspendisse porta tellus quis arcu interdum, non finibus dolor consectetur.
+                                        Vestibulum
+                                        ante
+                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris
+                                        tempus
+                                        quis
+                                        nisi eu tincidunt. Nullam pharetra, nibh non facilisis tincidunt, eros ipsum
+                                        eleifend
+                                        arcu,
+                                        ac dignissim ligula ex non magna. Sed rutrum enim nulla, ut interdum nunc
+                                        egestas
+                                        eu.
+                                    </span>
+                                </div>
+                                <div class="card-text">
+                                    <input id="terms-check-box" type="checkbox" name="checkbox" value="checked" required>
+                                    <label for="terms-check-box">I agree with these term and condition</label>
+                                </div>
                             </div>
                         </div>
 
-                        <div id="file" class="card-body col-17 card btn-light">
+                        <div id="file" class="col-17 card btn-light">
                             <div class="card-body">
                                 <h4 class="card-title">Word Upload</h4>
                                 <div class="card-text">

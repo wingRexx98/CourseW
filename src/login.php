@@ -13,30 +13,25 @@ require_once "config.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
-$username_err = $password_err = "";
+$invalid_err = "";
  
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
-    } else{
+if($_SERVER["REQUEST_METHOD"] == "POST"){    
+    
+    // if username is not empty
+    if(!empty(trim($_POST["username"]))){
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
-    } else{
+    // if password is not empty
+    if(!empty(trim($_POST["password"]))){
         $password = trim($_POST["password"]);
     }
     
     // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    if(empty($invalid_err)){
         // Prepare a select statement
         $sql = "SELECT user_id, role_id, faculty_id, username, password FROM user WHERE username = ?";
-        
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -67,14 +62,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: studenthome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.{$hashed_password}";
+                            $invalid_err = "Invalid username/password.2";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $invalid_err = "Invalid username/password.1";
                 }
-            } else{
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
@@ -105,6 +100,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="js/bootstrap.min.js">
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
+
+    <!--JS-->
+    <script src="js/validation.js"></script>
+
     <title>
         Home
     </title>
@@ -143,17 +142,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div id="log-in" class="info-box col-12 card btn-light">
                 <div class="card-body">
                     <h4 class="card-title">Sign in</h4>
+                    <span class="help-block text-danger"><?php echo $invalid_err; ?></span>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <!--TODO: change validation js-->
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="username" name="username" placeholder="Enter email address" required>
-                            <span class="help-block"><?php echo $username_err; ?></span>
+
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                            <span class="help-block"><?php echo $password_err; ?></span>
                         </div>
                         <button type="submit" class="btn btn-primary" value="login">Sign in</button>
                     </form>
