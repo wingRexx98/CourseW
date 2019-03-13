@@ -20,3 +20,6 @@ INSERT INTO `r69420`.`user` (`role_id`, `faculty_id`, `username`, `password`) VA
 INSERT INTO `r69420`.`user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '2', 'std2@m.com', 'std2');
 INSERT INTO `r69420`.`user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '3', 'std3@m.com', 'std3');
 
+INSERT INTO `r69420`.`closure` (`academic_year`, `closure_date`) VALUES ('2017', '2017-11-11');
+INSERT INTO `r69420`.`closure` (`academic_year`, `closure_date`) VALUES ('2018', '2018-11-11');
+INSERT INTO `r69420`.`closure` (`academic_year`, `closure_date`) VALUES ('2019', '2019-11-11');
