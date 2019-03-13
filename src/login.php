@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $invalid_err = "Invalid username/password";
                 }
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                $invalid_err = "Oops! Something went wrong. Please try again later.";
             }
         }
         
