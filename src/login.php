@@ -4,6 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    //TODO: set location according to role
     header("location: studenthome.php");
     exit;
 }
@@ -62,12 +63,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: studenthome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $invalid_err = "Invalid username/password.2";
+                            $invalid_err = "Invalid username/password";
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $invalid_err = "Invalid username/password.1";
+                    $invalid_err = "Invalid username/password";
                 }
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
