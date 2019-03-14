@@ -1,66 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>
-		HomePage
-	</title>
-	<link rel="stylesheet" type="text/css" href="">
+    <meta charset="utf-8">
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <!--Styles-->
+    <link rel="stylesheet" href="css/final.css">
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="js/bootstrap.min.js">
+    <!--jQuery-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <title>
+        Home
+    </title>
 </head>
+
 <body>
-	<section data-role="page">
-	<Header>
-		<div style="border:4px solid yellowgreen">
-			<font size="+2"><h1> News Paper Management System</h1></font>
-		</div>
-	</Header>
-		<div style="border:4px solid yellowgreen; clear: both;">
-			<label><h1>Falcuty Name Here</h1></label>
-		</div>
-	<div style="height:455px; width:33%; border:4px solid yellowgreen; float: left; padding:1%;">
-		<label>Student:</label>
-		<div style="height:390px ; overflow:auto; padding:1%">
-		<ol>
-				<li>One</li>
-				<li>Two</li>
-				<li>Three</li>
-				<li>Four</li>
-				<li>Five</li>
-				<li>Six</li>
-		</ol>
-		</div>
-		<input type="button" name="Contact" value="Contact">
-	</div>
-	<div style="height:455px; width:33%; border:4px solid yellowgreen; float: left;padding:1%;">
-		<label>Submitions:</label>
-		<div style="height:390px ; overflow:auto; padding:1%">
-		<ol>
-				<li>One</li>
-				<li>Two</li>
-				<li>Three</li>
-				<li>Four</li>
-				<li>Five</li>
-				<li>Six</li>
-		</ol>
-		</div>
-		<input type="button" name="Contact" value="Comment">
-		<input type="button" name="Contact" value="Choose">
-	</div>
-	<div style="height:455px; width:26.40%; border:4px solid yellowgreen; float: left;padding:1%;">
-		<label>Selected Submitions:</label>
-		<div style="height:390px ; overflow:auto; padding:1%">
-		<ol>
-				<li>One</li>
-				<li>Two</li>
-				<li>Three</li>
-				<li>Four</li>
-				<li>Five</li>
-				<li>Six</li>
-		</ol>
-		</div>
-		<input type="button" name="Contact" value="Retract">
-		<input type="button" name="Contact" value="View">
-	</div>
-	<footer data-role="footer"><div style="border:4px solid yellowgreen; padding:1%; clear: both;">@ 2019 2-1640 group</div></footer>
-	</section>
+    <section data-role="page">
+        <header>
+            <div class="header-footer">
+                <div id="header" class="col">
+                    <h1>News Management System</h1>
+                </div>
+            </div>
+        </header>
+        <div class="container">
+
+            <div class="col">
+                <label>
+                    <h1>Falcuty Name Here</h1>
+                </label>
+            </div>
+            <div id="body" class="row justify-content-around">
+                <div id="Students" class="info-box col-11 card btn-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Students:</h4>
+                        <ol class="card-text">
+                            <li>One</li>
+                            <li>Two</li>
+                            <li>Three</li>
+                            <li>Four</li>
+                            <li>Five</li>
+                            <li>Six</li>
+                        </ol>
+                        <input type="button" name="Contact" value="Contact">
+                    </div>
+                </div>
+                <div id="Submistions" class="info-box col-11 card btn-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Submitions:</h4>
+                        <ol class="card-text">
+                            <li>One</li>
+                            <li>Two</li>
+                            <li>Three</li>
+                            <li>Four</li>
+                            <li>Five</li>
+                            <li>Six</li>
+                        </ol>
+                        <input type="button" name="Select" value="Select">
+                        <input type="button" name="Comment" value="Comment">
+                    </div>
+                </div>
+                <div id="Submistions" class="info-box col-11 card btn-light">
+                    <div class="card-body">
+                        <h4 class="card-title">Selected Submitions:</h4>
+                        <ol class="card-text">
+                            <li>One</li>
+                            <li>Two</li>
+                            <li>Three</li>
+                            <li>Four</li>
+                            <li>Five</li>
+                            <li>Six</li>
+                        </ol>
+                        <input type="button" name="Deselect" value="Deselect">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer data-role="footer">
+            <div id="footer" class="header-footer">
+                @ 2019 2-1640 group
+            </div>
+        </footer>
+    </section>
 </body>
+
 </html>
