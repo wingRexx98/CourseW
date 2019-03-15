@@ -1,39 +1,16 @@
 <?php
+
+//error var
+
+$error_word = "";
+$error_img = "";
+$success_word = "";
+$success_img = "";
+
 // Check if the form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Check if file was uploaded without errors
-    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" );
-        $filename = $_FILES["photo"]["name"];
-        $filetype = $_FILES["photo"]["type"];
-        $filesize = $_FILES["photo"]["size"];
     
-        // Verify file extension
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        echo $ext;
-        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-    
-        // Verify file size - 5MB maximum
-        $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-    
-        // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
-            // Check whether file exists before uploading it
-            if(file_exists("upload/image/" . $filename)){
-                echo $filename . " is already exists.";
-            } else{
-                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $filename);
-                echo "Your file was uploaded successfully.";
-            } 
-        } else{
-            echo "Error: There was a problem uploading your file. Please try again."; 
-        }
-    }else{
-        echo "Error: " . $_FILES["photo"]["error"];
-    }
-    
-    // Check if file was uploaded without errors
+    // Check if word file was uploaded without errors
     if(isset($_FILES["word"]) && $_FILES["word"]["error"] == 0){
         $allowed = array("doc" => "application/msword", "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
         $filename = $_FILES["word"]["name"];
@@ -42,27 +19,62 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        echo $ext;
-        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+        //echo $ext;
+        if(!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
     
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+        if($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
     
         // Verify MYME type of the file
         if(in_array($filetype, $allowed)){
             // Check whether file exists before uploading it
             if(file_exists("upload/word/" . $filename)){
-                echo $filename . " is already exists.";
+                $error_word = $filename . " is already exists.";
             } else{
                 move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $filename);
-                echo "Your file was uploaded successfully.";
+                $success_word = "Your file was uploaded successfully.";
             } 
         } else{
-            echo "Error: There was a problem uploading your file. Please try again."; 
+            $error_word = "There was a problem uploading your file. Please try again."; 
         }
     }else{
-        echo "Error: " . $_FILES["word"]["error"];
+        $error_word = "There was a problem uploading your file. Please try again."; 
+        //echo "Error: " . $_FILES["word"]["error"];
+    }
+    
+    // Check if img file was uploaded without errors
+    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" );
+        $filename = $_FILES["photo"]["name"];
+        $filetype = $_FILES["photo"]["type"];
+        $filesize = $_FILES["photo"]["size"];
+    
+        // Verify file extension
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+        //echo $ext;
+        if(!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
+    
+        // Verify file size - 5MB maximum
+        $maxsize = 5 * 1024 * 1024;
+        if($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
+    
+        // Verify MYME type of the file
+        if(in_array($filetype, $allowed)){
+            // Check whether file exists before uploading it
+            if(file_exists("upload/image/" . $filename)){
+                $error_img = $filename . " is already exists.";
+            } else {
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $filename);
+                $success_img = "Your file was uploaded successfully.";
+            } 
+        } else{
+            $error_img = "There was a problem uploading your file. Please try again."; 
+            //echo $filetype;
+        }
+    }else{
+        $error_img = "There was a problem uploading your file. Please try again."; 
+        //echo "Error: " . $_FILES["photo"]["error"];
     }
 }
 ?>
@@ -99,7 +111,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </header>
         <div class="container">
-            <div id="body" class="row justify-content-around">
+
+            <div id="faculty" class="row pt-3">
+                <!--from respective faculty-->
+                <h2 class="col">Falcuty Name</h2>
+            </div>
+
+            <div id="body" class="row justify-content-between">
                 <div id="submission" class="info-box col-10 card btn-light">
                     <div class="card-body">
                         <h4 class="card-title">Word file(s) submission</h4>
@@ -184,19 +202,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div id="file" class="col-17 card btn-light">
                             <div class="card-body">
                                 <h4 class="card-title">Word Upload</h4>
+                                <!--Error word-->
+                                <span class="help-block text-danger"><?php echo $error_word; ?></span>
+
                                 <div class="card-text">
                                     <label for="file">Choose a Word File</label>
-                                    <input type="file" name="word" id="fileSelect" required>
-                                    <p><strong>Note:</strong> Only .doc, .docx, .pdf formats allowed to a max size of 5 MB.</p>
+                                    <input type="file" class="form-control-file" name="word" id="fileSelect" required>
+                                    <span>
+                                        <strong>Note:</strong>
+                                        Only .doc, .docx, .pdf formats allowed to a max size of 5 MB.
+                                    </span>
                                 </div>
+
+                                <!--Success img-->
+                                <span class="help-block text-success"><?php echo $success_word; ?></span>
+
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">Image Upload</h4>
+                                <!--Error img-->
+                                <span class="help-block text-danger"><?php echo $error_img; ?></span>
+
                                 <div class="card-text">
                                     <label for="file">Choose a Image file</label>
-                                    <input type="file" name="photo" id="fileSelect" required>
-                                    <p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>
+                                    <input type="file" class="form-control-file" name="photo" id="fileSelect" required>
+                                    <span>
+                                        <strong>Note:</strong>
+                                        Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.
+                                    </span>
                                 </div>
+
+                                <!--Success img-->
+                                <span class="help-block text-success"><?php echo $success_img; ?></span>
+
                             </div>
                             <button type="submit" name="submit" value="Upload" class="btn btn-primary">Send</button>
                         </div>
