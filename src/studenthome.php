@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(in_array($filetype, $allowed)){
             // Check whether file exists before uploading it
             if(file_exists("upload/word/" . $filename)){
-                $error_word = $filename . " is already exists.";
+                $error_word = $filename . " already exists.";
             } else{
                 move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $filename);
                 $success_word = "Your file was uploaded successfully.";
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(in_array($filetype, $allowed)){
             // Check whether file exists before uploading it
             if(file_exists("upload/image/" . $filename)){
-                $error_img = $filename . " is already exists.";
+                $error_img = $filename . " already exists.";
             } else {
                 move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $filename);
                 $success_img = "Your file was uploaded successfully.";
