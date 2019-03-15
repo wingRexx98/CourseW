@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Check if file was uploaded without errors
     if(isset($_FILES["word"]) && $_FILES["word"]["error"] == 0){
-        $allowed = array("doc" => "application/msword", "docx" => "application/msword", "pdf" => "application/pdf");
+        $allowed = array("doc" => "application/msword", "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
         $filename = $_FILES["word"]["name"];
         $filetype = $_FILES["word"]["type"];
         $filesize = $_FILES["word"]["size"];
