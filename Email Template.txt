@@ -3,6 +3,7 @@ Subject: New Submission in The Newspaper Management System.
 Message: 
 Hello <Insert Name of Faculty Coordinator Here>.
 There are currently one or more new submission(s) on the NMS.
+Submission is from the: <Student Name> (<Student Email>
 Please log on and review them at your earliest convenient.
 
 (This is an automated message, please do not respond to this message)
