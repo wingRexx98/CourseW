@@ -26,13 +26,16 @@ h2 {
 /* Body */
 #body {
   margin: 15px 0;
-  min-height: 450px;
+  min-height: 485px;
   max-height: 600px;
   width: 100%;
 }
 #body .long-text {
   max-height: 360px;
   margin-bottom: 20px;
+}
+#body td {
+  vertical-align: middle !important;
 }
 
 /* outline */

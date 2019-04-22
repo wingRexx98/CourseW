@@ -12,6 +12,15 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="js/bootstrap.min.js">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
@@ -36,57 +45,146 @@
             </div>
 
             <div id="body" class="row justify-content-between">
-                <div id="student-list" class="info-box col-11 card btn-light">
-                    <div class="card-body">
-                        <h4 class="card-title">Students:</h4>
-                        <ol class="card-text">
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                            <li>Four</li>
-                            <li>Five</li>
-                            <li>Six</li>
-                        </ol>
-                        <button class="btn btn-outline-primary">Contact</button>
-                    </div>
+                <div class="col-auto">
+                    <label for="submissionTable">
+                        <h3>Submission</h3>
+                    </label>
+
+                    <table id="submissionTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Submission</th>
+                                <th>Date</th>
+                                <th>Comment</th>
+                                <th>Publish status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submissionBody">
+                            <tr>
+                                <td>
+                                    <button class="btn btn-link">
+                                        Student
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-link">
+                                        Download
+                                    </button>
+                                </td>
+                                <td>30/4/1975</td>
+                                <td>
+                                    <button type="button" class="btn btn-link buttonComment" data-toggle="modal"
+                                        data-target="#commentModal" data-row-id="1">
+                                        Comment
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">
+                                        Publish
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="btn btn-link">
+                                        Student
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-link">
+                                        Download
+                                    </button>
+                                </td>
+                                <td>30/4/1975</td>
+                                <td>
+                                    <button type="button" class="btn btn-link buttonComment" data-toggle="modal"
+                                        data-target="#commentModal" data-row-id="2">
+                                        Comment
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info">
+                                        Publish
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
-                <div id="submission" class="info-box col-11 card btn-light">
-                    <div class="card-body">
-                        <h4 class="card-title">Submissions:</h4>
-                        <ol class="card-text">
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                            <li>Four</li>
-                            <li>Five</li>
-                            <li>Six</li>
-                        </ol>
-                        <button class="btn btn-outline-primary">Select</button>
-                        <button class="btn btn-outline-primary">Comment</button>
-                    </div>
+
+                <div class="col-auto">
+                    <label for="submissionTable">
+                        <h3>Publication</h3>
+                    </label>
+                    <table id="publishTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Submission</th>
+                                <th>Date</th>
+                                <th>Publish status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="publishBody">
+                            <tr>
+                                <td>student</td>
+                                <td>sub 1</td>
+                                <td>30/4/1975</td>
+                                <td>
+                                    <button class="btn btn-info">
+                                        Unpublish
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>student</td>
+                                <td>sub 1</td>
+                                <td>30/4/1975</td>
+                                <td>
+                                    <button class="btn btn-info">
+                                        Unpublish
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div id="publication" class="info-box col-11 card btn-light">
-                    <div class="card-body">
-                        <h4 class="card-title">Selected for publication:</h4>
-                        <ol class="card-text">
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                            <li>Four</li>
-                            <li>Five</li>
-                            <li>Six</li>
-                        </ol>
-                        <button class="btn btn-outline-primary">Deselect</button>
+            </div>
+
+            <div class="modal" id="commentModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="commentModalLabel">Add comment to
+                                submission</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form>
+                            <div class="form-group modal-body">
+                                <input type="text" class="form-control" id="rowID">
+                                <textarea type="text" class="form-control" placeholder="Enter your comment."></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <footer data-role="footer">
-            <div id="footer" class="header-footer">
-                @ 2019 2-1640 group
-            </div>
-        </footer>
+
+            <footer data-role="footer">
+                <div id="footer" class="header-footer">
+                    @ 2019 2-1640 group
+                </div>
+            </footer>
     </section>
+
+    <script src="js/coordinatorhome.js"></script>
 </body>
 
 </html>

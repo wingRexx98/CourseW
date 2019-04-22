@@ -1,38 +1,41 @@
-@import 'variables';
+@import "variables";
 
 /* misc */
 h1,
-h2,
-    {
-    font-family: $header-font;
+h2 {
+  font-family: $header-font;
 }
 
 /* Header and Footer */
 .header-footer {
-    background-color: $default-gray;
-    width: 100%;
+  background-color: $default-gray;
+  width: 100%;
 }
 
 #header {
-    height: 100px;
-    padding: 25px;
+  height: 100px;
+  padding: 25px;
 }
 
 #footer {
-    position: absolute;
-    height: 50px;
-    padding: 12.5px;
+  position: absolute;
+  height: 50px;
+  padding: 12.5px;
 }
 
 /* Body */
 #body {
-    margin: 15px 0;
-    min-height: $min-height-body;
-    max-height: $max-height-body;
-    width: 100%;
+  margin: 15px 0;
+  min-height: $min-height-body;
+  max-height: $max-height-body;
+  width: 100%;
 
-    .long-text {
-        max-height: $max-height-card-text;
-        margin-bottom: 20px;
-    }
+  .long-text {
+    max-height: $max-height-card-text;
+    margin-bottom: 20px;
+  }
+
+  td {
+    vertical-align: middle !important;
+  }
 }
