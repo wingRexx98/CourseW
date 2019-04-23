@@ -41,7 +41,7 @@
     	<li><a data-toggle="tab" href="#Faculty">Faculty</a></li>
     	<li><a data-toggle="tab" href="#Closure">Closure</a></li>
   	</ul>
-
+  	<!--Content for Tab -->
   	<div class="tab-content">
     <div id="User" class="tab-pane fade in active container">
     	<div id="body" class="row justify-content-between">
@@ -57,8 +57,8 @@
                             	<th>Password</th>
                             	<th>Delete</th>
                             </tr>
-                            <tr>
-                            	<!--Place Holder-->
+                            <!--Place Holder-->
+                            <tr>                         	
                             	<td>1</td>
                             	<td>1</td>
                             	<td>1</td>
@@ -69,9 +69,11 @@
                         </table> 
                     </div>
                 </div>
+                <!--Input For New-->
                 <div id="submission" class="info-box col-10 card btn-light">
                 	<div class="card-body text-center">
                 		<div class="card-text">
+                			<form>
                 			<div data-role="fieldcontain">
                 				<label for="textBox">Username</label>
                 				<input type="text" name="textBox" id="Usernametxt" value="" />
@@ -95,78 +97,85 @@
                 				</select>
                 			</br>
 							<input type="button" name="Contact" value="Add" class="btn btn-primary btn-lg">
+						</form>
                 	</div>
                 </div> 
         	</div>    
+		</div>
 	</div>
-</div>
     <div id="Role" class="tab-pane fade container">
     	<div id="body" class="row justify-content-between">
-                <div id="submission" class="info-box col-25 card btn-light">
-                	<h2 class="card-title">User Roles:</h2>
-                    <div class="card-body">
-                        <table class="table">
-                            <tr>
-                            	<th>Role ID</th>
-                            	<th>Role Name</th>
-                            	<th>Delete</th>
-                            </tr>
-                            <tr>
-                            	<!--Place Holder-->
-                            	<td>1</td>
-                            	<td>asd</td>
-                            	<td><input type="button" name="Contact" value="Delete" class="btn btn-link btn-lg"></td>
-                            </tr>  
+            <div id="submission" class="info-box col-25 card btn-light">
+                <h2 class="card-title">User Roles:</h2>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                        	<th>Role ID</th>
+                        	<th>Role Name</th>
+                        	<th>Delete</th>
+                        </tr>
+                        <!--Place Holder-->
+                        <tr>                      
+                       		<td>1</td>
+                        	<td>asd</td>
+                        	<td><input type="button" name="Contact" value="Delete" class="btn btn-link btn-lg"></td>
+                        </tr>  
                         </table>  
                     </div>
                 </div>
+                <!--Input For New-->
                 <div id="submission" class="info-box col-10 card btn-light">
                 	<div class="card-body text-center">
                 		<div class="card-text">
-                			<div data-role="fieldcontain">
-                				<label for="textBox">Role Name:</label>
-                				<input type="text" name="textBox" id="Usernametxt" value="" />
-                			</div>
-                			</br>
-							<input type="button" name="Contact" value="Add" class="btn btn-primary btn-lg">
+                		<form>
+                		<div data-role="fieldcontain">
+                			<label for="textBox">Role Name:</label>
+                			<input type="text" name="textBox" id="Usernametxt" value="" />
                 		</div>
+                		</br>
+						<input type="button" name="Contact" value="Add" class="btn btn-primary btn-lg">
+						</form>
+                	</div>
                 </div> 
-        	</div>  
+        	</div>    
 		</div>
 	</div>
-
     <div id="Faculty" class="tab-pane fade container">
     	<div id="body" class="row justify-content-between">
-                <div id="submission" class="info-box col-25 card btn-light">
-                	<h2 class="card-title">Falculties:</h2>
-                    <div class="card-body">
-                        <table class="table">
-                            <tr>
-                            	<th>Falculty ID</th>
-                            	<th>Falculty Name</th>
-                            	<th>Delete</th>
-                            </tr>
-                            <tr>
-                            	<!--Place Holder-->
-                            	<td>1</td>
-                            	<td>1</td>
-                            	<td><input type="button" name="Contact" value="Delete" class="btn btn-link btn-lg"></td>
-                            </tr>  
+            <div id="submission" class="info-box col-25 card btn-light">
+                <h2 class="card-title">Falculties:</h2>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                        	<th>Falculty ID</th>
+                            <th>Falculty Name</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tr>
+                            <!--Place Holder-->
+                            <td>1</td>
+                            <td>1</td>
+                            <td><input type="button" name="Contact" value="Delete" class="btn btn-link btn-lg"></td>
+                        </tr>  
                         </table> 
                     </div>
                 </div>
+                <!--Input For New-->
                 <div id="submission" class="info-box col-10 card btn-light">
                 	<div class="card-body text-center">
                 		<div class="card-text">
+                			<form>
                 			<div data-role="fieldcontain">
                 				<label for="textBox">Faculty name:</label>
                 				<input type="text" name="textBox" id="Usernametxt" value="" />
                 			</div>
+                			</br>
 							<input type="button" name="Contact" value="Add" class="btn btn-primary btn-lg">
+							</form>
                 		</div>
                 </div> 
         	</div>      
-			</div>
+		</div>
     </div>
     <div id="Closure" class="tab-pane fade container">
     	<div id="body" class="row justify-content-between">
@@ -180,8 +189,8 @@
         						<th>Academic Year</th>
         						<th>Delete</th>
                             </tr>
+                            <!--Place Holder-->
                             <tr>
-                            	<!--Place Holder-->
                             	<td>1</td>
                             	<td>1/1/1111</td>
                             	<td>1</td>
@@ -190,21 +199,24 @@
                         </table> 
                     </div>
                 </div>
+                <!--Input For New-->
                 <div id="submission" class="info-box col-10 card btn-light">
                 	<div class="card-body text-center">
                 		<div class="card-text">
+                			<form>
                 			<div data-role="fieldcontain">
                 				<label for="textBox">Closure Date:</label>
                 				<input type="text" name="textBox" id="Usernametxt" value="" />
                 			</div>
+                			</br>
 							<input type="button" name="Contact" value="Add" class="btn btn-primary btn-lg">
+							</form>
                 		</div>
-                </div> 
-        	</div>     
+                	</div> 
+        		</div>     
 			</div>
-    </div>
+    	</div>
   	</div>
-    <!--body-->
 
     <!--Default footer-->
     <div id="footer" class="header-footer">
