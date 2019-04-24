@@ -19,23 +19,16 @@ INSERT INTO `faculty` (`faculty_name`) VALUES ('design');
 DELETE FROM `user`;
 ALTER TABLE `user` AUTO_INCREMENT = 1;
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('1', '1', 'admin@m.com', 'admin');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('4', '1', 'mng1@m.com', 'mng1');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('4', '2', 'mng2@m.com', 'mgn2');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('4', '3', 'mgn3@m.com', 'mgn3');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('3', '1', 'drt@m.com', 'drt');
+INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('3', '1', 'mng1@m.com', 'mng1');
+INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('3', '2', 'mng2@m.com', 'mng2');
+INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('3', '3', 'mng3@m.com', 'mng3');
+INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('4', '1', 'drt@m.com', 'drt');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('2', '1', 'guest1@m.com', 'guest1');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('2', '2', 'guest2@m.com', 'guest2');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('2', '3', 'guest3@m.com', 'guest3');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '1', 'std1@m.com', 'std1');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '2', 'std2@m.com', 'std2');
 INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '3', 'std3@m.com', 'std3');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '1', 'std4@m.com', 'std4');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '2', 'std5@m.com', 'std5');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '3', 'std6@m.com', 'std6');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '1', 'std7@m.com', 'std7');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '2', 'std8@m.com', 'std8');
-INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('5', '3', 'std9@m.com', 'std9');
-
 
 DELETE FROM `closure`;
 ALTER TABLE `closure` AUTO_INCREMENT = 1;

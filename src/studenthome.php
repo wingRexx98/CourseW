@@ -1,84 +1,196 @@
 <?php
+// Authentication
+require_once "authenticator.php";
+// Include config file
+require_once "config.php";
 
 //error var
-
 $error_word = "";
 $error_img = "";
 $success_word = "";
 $success_img = "";
 
 // Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
     // Check if word file was uploaded without errors
-    if (isset($_FILES["word"]) && $_FILES["word"]["error"] == 0) {
+    if(isset($_FILES["word"]) && $_FILES["word"]["error"] == 0){
         $allowed = array("doc" => "application/msword", "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
         $filename = $_FILES["word"]["name"];
         $filetype = $_FILES["word"]["type"];
         $filesize = $_FILES["word"]["size"];
-
+        
+        $savename = "PDF".time();
+        
+    
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if (!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
-
+        if(!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
+    
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if ($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
-
+        if($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
+    
         // Verify MYME type of the file
-        if (in_array($filetype, $allowed)) {
+        if(in_array($filetype, $allowed)){
             // Check whether file exists before uploading it
-            if (file_exists("upload/word/" . $filename)) {
-                $error_word = $filename . " already exists.";
-            } else {
-                move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $filename);
-                $success_word = "Your file was uploaded successfully.";
-            }
-        } else {
-            $error_word = "There was a problem uploading your file. Please try again.";
+            if(file_exists("upload/word/" . $savename)){
+                $error_word = $savename . " already exists.";
+            } else{
+                move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $savename);
+                // sql insert file url into db
+                $userid = $_SESSION["id"];
+                $submitdate = date("Y-m-d");
+                            
+                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('".$userid."', '".$submitdate."', '".$savename."', 'image url', 0);";
+                if ($conn->query($sql) === true) {
+                    $success_word = "Your file was uploaded successfully.";
+                } else {
+                    $error_word = "Error: " . $sql . "<br>" . $conn->error;
+                } 
+//                $conn->close();
+            } 
+        } else{
+            $error_word = "There was a problem uploading your file. Please try again."; 
         }
-    } else {
-        $error_word = "There was a problem uploading your file. Please try again.";
-        //echo "Error: " . $_FILES["word"]["error"];
     }
-
+    
     // Check if img file was uploaded without errors
-    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" );
         $filename = $_FILES["photo"]["name"];
+        
         $filetype = $_FILES["photo"]["type"];
         $filesize = $_FILES["photo"]["size"];
-
+        $savename = "IMG".time();
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if (!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
-
+        if(!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
+    
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if ($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
-
+        if($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
+    
         // Verify MYME type of the file
-        if (in_array($filetype, $allowed)) {
+        if(in_array($filetype, $allowed)){
             // Check whether file exists before uploading it
-            if (file_exists("upload/image/" . $filename)) {
-                $error_img = $filename . " already exists.";
+            if(file_exists("upload/image/" . $savename)){
+                $error_img = $savename . " already exists.";
             } else {
-                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $filename);
-                $success_img = "Your file was uploaded successfully.";
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $savename);
+                // sql insert file url into db
+                $userid = $_SESSION["id"];
+                $submitdate = date("Y-m-d");
+                            
+                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('".$userid."', '".$submitdate."', 'word url', '".$savename."', 0);";
+                if ($conn->query($sql) === TRUE) {
+                    $success_img = "Your file was uploaded successfully.";
+                } else {
+                    $error_img = "Error: " . $sql . "<br>" . $conn->error;
+                } 
+//                $conn->close();
             }
-        } else {
-            $error_img = "There was a problem uploading your file. Please try again.";
+        } else{
+            $error_img = "There was a problem uploading your file. Please try again."; 
             //echo $filetype;
         }
-    } else {
-        $error_img = "There was a problem uploading your file. Please try again.";
-        //echo "Error: " . $_FILES["photo"]["error"];
     }
 }
-?>
 
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+    deleteById($id, $conn);
+}
+
+function deleteById($id, $conn){
+    $sql = "DELETE FROM submission WHERE submission_id = ".$id.";";
+    echo $sql;
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+}
+
+function getFacultyName($conn){
+    $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = ".$_SESSION["faculty"].";";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $facultyname = $row['faculty_name'];
+            echo '<h2 class="col">Faculty of '.$facultyname.'</h2>';
+        }
+    } 
+}
+
+function uploadedWord($conn) {
+    $sql = "SELECT * FROM submission WHERE user_id =".$_SESSION["id"]. ";";
+    $result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $rowid = $row["submission_id"];
+        $filename = $row["word_url"];
+        if ($filename != "word url"){echo '<tr>
+                                        <td>
+                                            <a href="upload/word/'.$filename.'" class="">
+                                                '.$filename.'
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="'.$rowid.'">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>';}
+    }
+}
+//$conn->close();
+}
+
+function uploadedImg($conn) {
+    
+    $sql = "SELECT * FROM submission WHERE user_id =".$_SESSION["id"]. ";";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $rowid = $row["submission_id"];
+            $filename = $row["image_url"];
+            if ($filename != "image url"){echo '<tr>
+                                        <td>
+                                            <a href="upload/image/'.$filename.'" class="">
+                                                 '.$filename.'
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="'.$rowid.'">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>';}
+        }
+    }
+//$conn->close();
+}
+
+function deleteUpload($conn){
+    // sql to delete a record
+$sql = "DELETE FROM submission WHERE id=3";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+
+//$conn->close();
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -117,7 +229,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div id="faculty" class="row pt-3">
                 <!--from respective faculty-->
-                <h2 class="col">Faculty Name</h2>
+                <?php
+                getFacultyName($conn);
+                ?>
+                
             </div>
 
             <div id="body" class="row justify-content-between">
@@ -135,11 +250,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </tr>
                                 </thead>
                                 <tbody id="submissionBody">
+                                    <?php
+                                    uploadedWord($conn);
+                                    ?>
+                                    <!--
                                     <tr>
                                         <td>
                                             <a href="#" class="">
                                                 Submission name
-                                                <!-- click to download -->
+                                                 click to download 
                                             </a>
                                         </td>
                                         <td>
@@ -148,32 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                <!-- click to download -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                <!-- click to download -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
+-->
                                 </tbody>
                             </table>
                         </div>
@@ -192,45 +286,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </tr>
                                 </thead>
                                 <tbody id="submissionBody">
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                <!-- click to download -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                <!-- click to download -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="2">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                <!-- click to download -->
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    uploadedImg($conn);
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -306,7 +364,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card-text">
                                     <label for="file">Choose a Word File</label>
-                                    <input type="file" class="form-control-file" name="word" id="fileSelect" required>
+                                    <input type="file" class="form-control-file" name="word" id="fileSelect">
                                     <span>
                                         <strong>Note:</strong>
                                         Only .doc, .docx, .pdf formats allowed to a max size of 5 MB.
@@ -326,7 +384,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <div class="card-text">
                                     <label for="file">Choose a Image file</label>
-                                    <input type="file" class="form-control-file" name="photo" id="fileSelect" required>
+                                    <input type="file" class="form-control-file" name="photo" id="fileSelect">
                                     <span>
                                         <strong>Note:</strong>
                                         Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.
@@ -357,12 +415,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <form>
                         <div class="form-group modal-body">
-                            <input type="text" class="form-control" id="rowID">
+                            <input type="text" class="form-control" id="rowID" hidden>
                             <span>Are you sure? This action cannot be undone.</span>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <button type="submit" class="btn btn-primary deleteBtn">Delete</button>
                         </div>
                     </form>
                 </div>

@@ -31,13 +31,15 @@ h2 {
 
   .long-text {
     max-height: $max-height-card-text;
+    overflow: auto !important;
     margin-bottom: 20px;
   }
 
   .long-text-card-small {
     max-height: $max-height-card-small-text;
+    overflow: auto !important;
   }
-
+  
   td {
     vertical-align: middle !important;
   }

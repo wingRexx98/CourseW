@@ -31,10 +31,12 @@ h2 {
 }
 #body .long-text {
   max-height: 450px;
+  overflow: auto !important;
   margin-bottom: 20px;
 }
 #body .long-text-card-small {
   max-height: 180px;
+  overflow: auto !important;
 }
 #body td {
   vertical-align: middle !important;
