@@ -43,225 +43,228 @@
             <h2 class="col">Administrator</h2>
         </div>
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a data-toggle="tab" class="nav-link active" href="#user">User</a>
-            </li>
-            <li class="nav-item">
-                <a data-toggle="tab" class="nav-link" href="#Role">Role</a>
-            </li>
-            <li class="nav-item">
-                <a data-toggle="tab" class="nav-link" href="#Faculty">Faculty</a>
-            </li>
-            <li class="nav-item">
-                <a data-toggle="tab" class="nav-link" href="#Closure">Closure</a>
-            </li>
-        </ul>
-        <!--Content for Tab -->
-        <div class="tab-content">
-            <div id="user" class="tab-pane in active container">
-                <div id="body" class="row justify-content-between">
-                    <div class="info-box col-25 card btn-light">
-                        <div class="card-body">
-                            <label>
-                                <h3 class="card-title">User</h3>
-                            </label>
-                            <table class="card-text table">
-                                <thead>
+        <div id="body">
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a data-toggle="tab" class="nav-link" href="#user">User</a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="nav-link" href="#Role">Role</a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="nav-link" href="#Faculty">Faculty</a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="tab" class="nav-link" href="#Closure">Closure</a>
+                </li>
+            </ul>
+            <!--Content for Tab -->
+            <div class="tab-content">
+                <div id="user" class="tab-pane fade container">
+                    <div id="body" class="row justify-content-between">
+                        <div class="info-box col-25 card btn-light">
+                            <div class="card-body">
+                                <label>
+                                    <h3 class="card-title">User</h3>
+                                </label>
+                                <table class="card-text table">
+                                    <thead>
+                                        <tr>
+                                            <th>User ID</th>
+                                            <th>Role ID</th>
+                                            <th>Falculty ID</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Delete</th>
+                                            <th>Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="userTable">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>asd</td>
+                                            <td>asd</td>
+                                            <td>
+                                                <a href="#" class="getRowID" data-toggle="modal"
+                                                    data-target="#deleteModal" data-row-id="1">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#">Update</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Input For New-->
+                        <div class="info-box col-10 card btn-light">
+                            <div class="card-body">
+                                <label>
+                                    <h3 class="card-title">Add a new user</h3>
+                                </label>
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" name="username" id="username" />
+                                        </div>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control" name="password" id="password" />
+                                        </div>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="select" class="select">Choose Role:</label>
+                                            <!--Get role name from db-->
+                                            <select id="select" class="form-control" name="select">
+                                                <option value="1">Student</option>
+                                                <option value="2">Coordinator</option>
+                                                <option value="3">Manager</option>
+                                            </select>
+                                        </div>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="select" class="select">Choose Faculty:</label>
+                                            <!--Get faculty name from db-->
+                                            <select id="select" class="form-control" name="select">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Role" class="tab-pane fade container">
+                    <div id="body" class="row justify-content-between">
+                        <div id="submission" class="info-box col-25 card btn-light">
+                            <div class="card-body">
+                                <label>
+                                    <h2 class="card-title">User Roles:</h2>
+                                </label>
+                                <table class="table">
                                     <tr>
-                                        <th>User ID</th>
                                         <th>Role ID</th>
-                                        <th>Falculty ID</th>
-                                        <th>Username</th>
-                                        <th>Password</th>
+                                        <th>Role Name</th>
                                         <th>Delete</th>
-                                        <th>Update</th>
                                     </tr>
-                                </thead>
-                                <tbody class="userTable">
+                                    <!--Place Holder-->
                                     <tr>
                                         <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>asd</td>
                                         <td>asd</td>
                                         <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal"
-                                                data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#">Update</a>
+                                            <a href="#">Delete</a>
                                         </td>
                                     </tr>
-                                </tbody>
-                            </table>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <!--Input For New-->
-                    <div class="info-box col-10 card btn-light">
-                        <div class="card-body">
-                            <label>
-                                <h3 class="card-title">Add a new user</h3>
-                            </label>
-                            <div class="card-text">
-                                <form>
-                                    <div data-role="fieldcontain" class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" />
-                                    </div>
-                                    <div data-role="fieldcontain" class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="text" class="form-control" name="password" id="password" />
-                                    </div>
-                                    <div data-role="fieldcontain" class="form-group">
-                                        <label for="select" class="select">Choose Role:</label>
-                                        <!--Get role name from db-->
-                                        <select id="select" class="form-control" name="select">
-                                            <option value="1">Student</option>
-                                            <option value="2">Coordinator</option>
-                                            <option value="3">Manager</option>
-                                        </select>
-                                    </div>
-                                    <div data-role="fieldcontain" class="form-group">
-                                        <label for="select" class="select">Choose Faculty:</label>
-                                        <!--Get faculty name from db-->
-                                        <select id="select" class="form-control" name="select">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                    <button type="button" class="btn btn-primary">Add</button>
-                                </form>
+                        <!--Input For New-->
+                        <div id="submission" class="info-box col-10 card btn-light">
+                            <div class="card-body text-center">
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain">
+                                            <label for="textBox">Role Name:</label>
+                                            <input type="text" name="textBox" id="Usernametxt" value="" />
+                                        </div>
+                                        </br>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="Role" class="tab-pane fade container">
-                <div id="body" class="row justify-content-between">
-                    <div id="submission" class="info-box col-25 card btn-light">
-                        <div class="card-body">
-                            <label>
-                                <h2 class="card-title">User Roles:</h2>
-                            </label>
-                            <table class="table">
-                                <tr>
-                                    <th>Role ID</th>
-                                    <th>Role Name</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <!--Place Holder-->
-                                <tr>
-                                    <td>1</td>
-                                    <td>asd</td>
-                                    <td>
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                            </table>
+                <div id="Faculty" class="tab-pane fade container">
+                    <div id="body" class="row justify-content-between">
+                        <div id="submission" class="info-box col-25 card btn-light">
+                            <h2 class="card-title">Falculties:</h2>
+                            <div class="card-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>Falculty ID</th>
+                                        <th>Falculty Name</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr>
+                                        <!--Place Holder-->
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>
+                                            <a href="#">Delete</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <!--Input For New-->
-                    <div id="submission" class="info-box col-10 card btn-light">
-                        <div class="card-body text-center">
-                            <div class="card-text">
-                                <form>
-                                    <div data-role="fieldcontain">
-                                        <label for="textBox">Role Name:</label>
-                                        <input type="text" name="textBox" id="Usernametxt" value="" />
-                                    </div>
-                                    </br>
-                                    <button type="button" class="btn btn-primary">Add</button>
-                                </form>
+                        <!--Input For New-->
+                        <div id="submission" class="info-box col-10 card btn-light">
+                            <div class="card-body text-center">
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain">
+                                            <label for="textBox">Faculty name:</label>
+                                            <input type="text" name="textBox" id="Usernametxt" value="" />
+                                        </div>
+                                        </br>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="Faculty" class="tab-pane fade container">
-                <div id="body" class="row justify-content-between">
-                    <div id="submission" class="info-box col-25 card btn-light">
-                        <h2 class="card-title">Falculties:</h2>
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <th>Falculty ID</th>
-                                    <th>Falculty Name</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <tr>
+                <div id="Closure" class="tab-pane fade container">
+                    <div id="body" class="row justify-content-between">
+                        <div id="submission" class="info-box col-25 card btn-light">
+                            <h2 class="card-title">Falculties:</h2>
+                            <div class="card-body">
+                                <table class="table">
+                                    <tr>
+                                        <th>Closure ID</th>
+                                        <th>Closure Date</th>
+                                        <th>Academic Year</th>
+                                        <th>Delete</th>
+                                    </tr>
                                     <!--Place Holder-->
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>
-                                        <a href="#">Delete</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!--Input For New-->
-                    <div id="submission" class="info-box col-10 card btn-light">
-                        <div class="card-body text-center">
-                            <div class="card-text">
-                                <form>
-                                    <div data-role="fieldcontain">
-                                        <label for="textBox">Faculty name:</label>
-                                        <input type="text" name="textBox" id="Usernametxt" value="" />
-                                    </div>
-                                    </br>
-                                    <button type="button" class="btn btn-primary">Add</button>
-                                </form>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>1/1/1111</td>
+                                        <td>1</td>
+                                        <td><input type="button" name="Contact" value="Delete"
+                                                class="btn btn-link btn-lg">
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="Closure" class="tab-pane fade container">
-                <div id="body" class="row justify-content-between">
-                    <div id="submission" class="info-box col-25 card btn-light">
-                        <h2 class="card-title">Falculties:</h2>
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <th>Closure ID</th>
-                                    <th>Closure Date</th>
-                                    <th>Academic Year</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <!--Place Holder-->
-                                <tr>
-                                    <td>1</td>
-                                    <td>1/1/1111</td>
-                                    <td>1</td>
-                                    <td><input type="button" name="Contact" value="Delete" class="btn btn-link btn-lg">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!--Input For New-->
-                    <div id="submission" class="info-box col-10 card btn-light">
-                        <div class="card-body text-center">
-                            <div class="card-text">
-                                <form>
-                                    <div data-role="fieldcontain">
-                                        <label for="textBox">Closure Date:</label>
-                                        <input type="text" name="textBox" id="Usernametxt" value="" />
-                                    </div>
-                                    </br>
-                                    <button type="button" class="btn btn-primary">Add</button>
-                                </form>
+                        <!--Input For New-->
+                        <div id="submission" class="info-box col-10 card btn-light">
+                            <div class="card-body text-center">
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain">
+                                            <label for="textBox">Closure Date:</label>
+                                            <input type="text" name="textBox" id="Usernametxt" value="" />
+                                        </div>
+                                        </br>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="modal" id="deleteModal">
