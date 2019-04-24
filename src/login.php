@@ -1,13 +1,6 @@
 <?php
-// Initialize the session
-session_start();
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    //TODO: set location according to role
-    header("location: studenthome.php");
-    exit;
-}
+// Session and redirect
+require_once "session.php";
  
 // Include config file
 require_once "config.php";
@@ -33,10 +26,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($invalid_err)){
         // Prepare a select statement
         $sql = "SELECT user_id, role_id, faculty_id, username, password FROM user WHERE username = ?";
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
             // Set parameters
             $param_username = $username;
             
@@ -57,7 +49,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username; 
+                            $_SESSION["role"] = $role_id;
+                            $_SESSION["faculty"] = $faculty_id;
                             
                             // Redirect user to their page
                             header("location: studenthome.php");
@@ -80,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($conn);
 }
 ?>
 
