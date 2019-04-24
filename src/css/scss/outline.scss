@@ -27,12 +27,15 @@ h2 {
 #body {
   margin: 15px 0;
   min-height: $min-height-body;
-  max-height: $max-height-body;
   width: 100%;
 
   .long-text {
     max-height: $max-height-card-text;
     margin-bottom: 20px;
+  }
+
+  .long-text-card-small {
+    max-height: $max-height-card-small-text;
   }
 
   td {

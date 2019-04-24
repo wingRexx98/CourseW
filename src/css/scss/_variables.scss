@@ -1,10 +1,9 @@
 /* outline */
 $default-gray: #e2e6ea !default;
-$header-font: Impact,
-Charcoal,
-sans-serif;
+$header-font: Impact, Charcoal, sans-serif;
 $min-height-body: 485px;
-$max-height-body: 600px;
+$max-height-body: 900px;
 
 /* card */
-$max-height-card-text: $max-height-body * 3 / 5;
+$max-height-card-text: $max-height-body / 2;
+$max-height-card-small-text: $max-height-body / 5;
