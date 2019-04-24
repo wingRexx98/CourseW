@@ -52,6 +52,18 @@ if ($conn->query($sql) === TRUE) {
 }
 }
 
+function getFacultyName($conn){
+    $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = ".$_SESSION["faculty"].";";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $facultyname = $row['faculty_name'];
+            echo '<h1 class="col">Faculty of '.$facultyname.'</h1>';
+        }
+    } 
+}
+
 //echo $_SESSION["faculty"];
 function getFacultyStudent($conn) {
     
@@ -65,7 +77,7 @@ function getFacultyStudent($conn) {
         }
     } else {
     echo "<li>One</li>";
-}
+} 
 //$conn->close();
 }
 
@@ -188,7 +200,9 @@ function getSelected($conn) {
 
             <div id="faculty" class="row pt-3">
                 <!--from respective faculty-->
-                <h1 class="col">Falcuty Name</h1>
+                <?php
+                getFacultyName($conn);
+                ?>
             </div>
 
             <div id="body" class="row justify-content-between">
@@ -343,3 +357,4 @@ function getSelected($conn) {
 </body>
 
 </html>
+
