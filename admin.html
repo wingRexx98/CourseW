@@ -168,14 +168,16 @@
                         </div>
                         <!--Input For New-->
                         <div id="submission" class="info-box col-10 card btn-light">
-                            <div class="card-body text-center">
+                            <div class="card-body">
+                                <label>
+                                    <h3 class="card-title">Add a new role</h3>
+                                </label>
                                 <div class="card-text">
                                     <form>
-                                        <div data-role="fieldcontain">
-                                            <label for="textBox">Role Name:</label>
-                                            <input type="text" name="textBox" id="Usernametxt" value="" />
-                                        </div>
-                                        </br>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="rolename">Role Name</label>
+                                            <input type="text" class="form-control" name="rolename" id="rolename" />
+                                        </div>                                      
                                         <button type="button" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
@@ -186,12 +188,12 @@
                 <div id="Faculty" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h2 class="card-title">Falculties:</h2>
+                            <h2 class="card-title">Faculties:</h2>
                             <div class="card-body">
                                 <table class="table">
                                     <tr>
-                                        <th>Falculty ID</th>
-                                        <th>Falculty Name</th>
+                                        <th>Faculty ID</th>
+                                        <th>Faculty Name</th>
                                         <th>Delete</th>
                                     </tr>
                                     <tr>
@@ -207,17 +209,21 @@
                         </div>
                         <!--Input For New-->
                         <div id="submission" class="info-box col-10 card btn-light">
-                            <div class="card-body text-center">
-                                <div class="card-text">
-                                    <form>
-                                        <div data-role="fieldcontain">
-                                            <label for="textBox">Faculty name:</label>
-                                            <input type="text" name="textBox" id="Usernametxt" value="" />
-                                        </div>
-                                        </br>
-                                        <button type="button" class="btn btn-primary">Add</button>
-                                    </form>
-                                </div>
+                            <div class="card-body">
+                                <div class="card-body">
+                                	<label>
+                                    	<h3 class="card-title">Add a new faculty</h3>
+                                	</label>
+                                	<div class="card-text">
+                                    	<form>
+                                        	<div data-role="fieldcontain" class="form-group">
+                                            	<label for="facultyname">Faculty Name</label>
+                                            	<input type="text" class="form-control" name="facultyname" id="facultyname" />
+                                        	</div>                                      
+                                        	<button type="button" class="btn btn-primary">Add</button>
+                                    	</form>
+                               		</div>
+                            	</div>
                             </div>
                         </div>
                     </div>
@@ -225,7 +231,7 @@
                 <div id="Closure" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h2 class="card-title">Falculties:</h2>
+                            <h2 class="card-title">Closure Dates:</h2>
                             <div class="card-body">
                                 <table class="table">
                                     <tr>
@@ -248,17 +254,21 @@
                         </div>
                         <!--Input For New-->
                         <div id="submission" class="info-box col-10 card btn-light">
-                            <div class="card-body text-center">
-                                <div class="card-text">
-                                    <form>
-                                        <div data-role="fieldcontain">
-                                            <label for="textBox">Closure Date:</label>
-                                            <input type="text" name="textBox" id="Usernametxt" value="" />
-                                        </div>
-                                        </br>
-                                        <button type="button" class="btn btn-primary">Add</button>
-                                    </form>
-                                </div>
+                            <div class="card-body">
+                                <div class="card-body">
+                                	<label>
+                                    	<h3 class="card-title">Add a new date</h3>
+                                	</label>
+                                	<div class="card-text">
+                                    	<form>
+                                        	<div data-role="fieldcontain" class="form-group">
+                                            	<label for="closuredate">Closure Date:</label>
+                                            	<input type="date" class="form-control" name="closuredate" id="closuredate" />
+                                        	</div>                                      
+                                        	<button type="button" class="btn btn-primary">Add</button>
+                                    	</form>
+                               		</div>
+                            	</div>
                             </div>
                         </div>
                     </div>
