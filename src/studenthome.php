@@ -114,6 +114,18 @@ if ($conn->query($sql) === TRUE) {
 }
 }
 
+function getFacultyName($conn){
+    $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = ".$_SESSION["faculty"].";";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+    // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $facultyname = $row['faculty_name'];
+            echo '<h2 class="col">Faculty of '.$facultyname.'</h2>';
+        }
+    } 
+}
+
 function uploadedWord($conn) {
     $sql = "SELECT * FROM submission WHERE user_id =".$_SESSION["id"]. ";";
     $result = $conn->query($sql);
@@ -217,7 +229,10 @@ if ($conn->query($sql) === TRUE) {
 
             <div id="faculty" class="row pt-3">
                 <!--from respective faculty-->
-                <h2 class="col">Faculty Name</h2>
+                <?php
+                getFacultyName($conn);
+                ?>
+                
             </div>
 
             <div id="body" class="row justify-content-between">
