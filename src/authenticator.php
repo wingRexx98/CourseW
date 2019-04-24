@@ -7,24 +7,24 @@ $current_page = basename($_SERVER["SCRIPT_FILENAME"], '.php');
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 if(isset($_SESSION["role"]) && $_SESSION["role"] != 1){
     // Set location according to role
-    switch ($current_page) {
-    case "studenthome":
-        if ($_SESSION["role"] != 5){die("Unauthorized access.");}
+    switch ($_SESSION["role"]){
+            case 5:
+            if ($current_page != "studenthome"){die("Unauthorized access.");}
         break;
-    case "coordinatorhome":
-        if ($_SESSION["role"] != 3){die("Unauthorized access.");}
+            case 4:
+            if ($current_page != "manager"){die("Unauthorized access.");}
         break;
-    case "manager":
-        if ($_SESSION["role"] != 4){die("Unauthorized access.");}
+            case 3:
+            if ($current_page != "coordinatorhome"){die("Unauthorized access.");}
         break;
-    case "mail":
-        
+//            case 2:
+//            if ($current_page != "studenthome"){die("Unauthorized access.");}
+//        break;
+            case 1:
+            if ($current_page != "studenthome"){die("Unauthorized access.");}
         break;
-    case 5:
-        
-        break;
-    default:
-        break; 
+        default:
+            break;
     }
 }
 }else{
