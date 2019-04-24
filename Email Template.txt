@@ -1,9 +1,0 @@
-Email Template: 
-Subject: New Submission in The Newspaper Management System.
-Message: 
-Hello <Insert Name of Faculty Coordinator Here>.
-There is a new submission on the NMS.
-Submission is from the: <Student Name> (<Student Email>
-Please log on and review it at your earliest convenient.
-
-(This is an automated message, please do not respond to this message)
