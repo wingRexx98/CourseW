@@ -8,72 +8,72 @@ $success_word = "";
 $success_img = "";
 
 // Check if the form was submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Check if word file was uploaded without errors
-    if(isset($_FILES["word"]) && $_FILES["word"]["error"] == 0){
+    if (isset($_FILES["word"]) && $_FILES["word"]["error"] == 0) {
         $allowed = array("doc" => "application/msword", "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
         $filename = $_FILES["word"]["name"];
         $filetype = $_FILES["word"]["type"];
         $filesize = $_FILES["word"]["size"];
-    
+
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if(!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
-    
+        if (!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
+
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
-    
+        if ($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
+
         // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
+        if (in_array($filetype, $allowed)) {
             // Check whether file exists before uploading it
-            if(file_exists("upload/word/" . $filename)){
+            if (file_exists("upload/word/" . $filename)) {
                 $error_word = $filename . " already exists.";
-            } else{
+            } else {
                 move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $filename);
                 $success_word = "Your file was uploaded successfully.";
-            } 
-        } else{
-            $error_word = "There was a problem uploading your file. Please try again."; 
+            }
+        } else {
+            $error_word = "There was a problem uploading your file. Please try again.";
         }
-    }else{
-        $error_word = "There was a problem uploading your file. Please try again."; 
+    } else {
+        $error_word = "There was a problem uploading your file. Please try again.";
         //echo "Error: " . $_FILES["word"]["error"];
     }
-    
+
     // Check if img file was uploaded without errors
-    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" );
+    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         $filename = $_FILES["photo"]["name"];
         $filetype = $_FILES["photo"]["type"];
         $filesize = $_FILES["photo"]["size"];
-    
+
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if(!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
-    
+        if (!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
+
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
-    
+        if ($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
+
         // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
+        if (in_array($filetype, $allowed)) {
             // Check whether file exists before uploading it
-            if(file_exists("upload/image/" . $filename)){
+            if (file_exists("upload/image/" . $filename)) {
                 $error_img = $filename . " already exists.";
             } else {
                 move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $filename);
                 $success_img = "Your file was uploaded successfully.";
-            } 
-        } else{
-            $error_img = "There was a problem uploading your file. Please try again."; 
+            }
+        } else {
+            $error_img = "There was a problem uploading your file. Please try again.";
             //echo $filetype;
         }
-    }else{
-        $error_img = "There was a problem uploading your file. Please try again."; 
+    } else {
+        $error_img = "There was a problem uploading your file. Please try again.";
         //echo "Error: " . $_FILES["photo"]["error"];
     }
 }
@@ -94,6 +94,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <!--Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="js/bootstrap.min.js">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
@@ -114,39 +117,133 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             <div id="faculty" class="row pt-3">
                 <!--from respective faculty-->
-                <h2 class="col">Falcuty Name</h2>
+                <h2 class="col">Faculty Name</h2>
             </div>
 
             <div id="body" class="row justify-content-between">
-                <div id="submission" class="info-box col-10 card btn-light">
-                    <div class="card-body">
-                        <h4 class="card-title">Word file(s) submission</h4>
-                        <ol class="card-text">
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                            <li>Four</li>
-                            <li>Five</li>
-                            <li>Six</li>
-                        </ol>
+                <div id="submission" class="info-box col-10 card border-0">
+                    <div class="card card-body btn-light mb-3">
+                        <label for="submissionTableWord">
+                            <h4 class="card-title">Word file(s) submission</h4>
+                        </label>
+                        <div class=" long-text-card-small overflow-auto">
+                            <table id="submissionTableWord" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Submission</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="submissionBody">
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Image file(s) submission</h4>
-                        <ol class="card-text">
-                            <li>One</li>
-                            <li>Two</li>
-                            <li>Three</li>
-                            <li>Four</li>
-                            <li>Five</li>
-                            <li>Six</li>
-                        </ol>
+
+                    <div class="card card-body btn-light">
+                        <label for="submissionTableImg">
+                            <h4 class="card-title">Image file(s) submission</h4>
+                        </label>
+                        <div class=" long-text-card-small overflow-auto">
+                            <table id="submissionTableImg" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Submission</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="submissionBody">
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="2">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="">
+                                                Submission name
+                                                <!-- click to download -->
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
                 <div id="upload" class="info-box col-25">
                     <form method="post" enctype="multipart/form-data" class="row justify-content-around">
                         <div id="terms" class="col-17 card btn-light">
                             <div class="card-body">
-                                <h4 class="card-title">Terms And Agreements</h4>
+                                <label>
+                                    <h4 class="card-title">Terms And Agreements</h4>
+                                </label>
                                 <div class="card-text long-text overflow-auto">
                                     <span>
                                         1. Introduction.
@@ -201,7 +298,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         <div id="file" class="col-17 card btn-light">
                             <div class="card-body">
-                                <h4 class="card-title">Word Upload</h4>
+                                <label>
+                                    <h4 class="card-title">Word Upload</h4>
+                                </label>
                                 <!--Error word-->
                                 <span class="help-block text-danger"><?php echo $error_word; ?></span>
 
@@ -219,7 +318,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title">Image Upload</h4>
+                                <label>
+                                    <h4 class="card-title">Image Upload</h4>
+                                </label>
                                 <!--Error img-->
                                 <span class="help-block text-danger"><?php echo $error_img; ?></span>
 
@@ -244,12 +345,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
 
+
+        <div class="modal" id="deleteModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete previous submission</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="form-group modal-body">
+                            <input type="text" class="form-control" id="rowID">
+                            <span>Are you sure? This action cannot be undone.</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <footer data-role="footer">
             <div id="footer" class="header-footer">
                 @ 2019 2-1640 group
             </div>
         </footer>
     </section>
+
+    <script src="js/getRowID.js"></script>
 </body>
 
 </html>
