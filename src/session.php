@@ -22,7 +22,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         header("location: studenthome.php");
         break;
     default:
-        header("location: login.php");
+        header("location: index.php");
     }
 }
 ?>
