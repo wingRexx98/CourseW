@@ -80,14 +80,19 @@ function getSubmission($conn, $facultyId)
         Home
     </title>
 </head>
-
-<body>
     <!--Default header-->
-    <div class="header-footer">
-        <div id="header" class="col">
-            <h1>News Management System</h1>
+        <div class="header-footer">
+            <div id="header" class="row justify-content-between">
+                <div class="col-auto">
+                    <h1><a style="color: #000000;
+    text-decoration: none;" href="index.php">News Management System</a></h1>
+                </div>
+                <div class="col-7">
+                    <h5><a style="color: #000000;
+    text-decoration: none;" href="logout.php">Logout</a></h5>
+                </div>
+            </div>
         </div>
-    </div>
 
     <!--body-->
     <div class="container">

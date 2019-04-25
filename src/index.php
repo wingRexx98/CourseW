@@ -107,8 +107,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <!--Default header-->
     <div class="header-footer">
-        <div id="header" class="col">
-            <h1>News Management System</h1>
+        <div id="header" class="row justify-content-between">
+            <div class="col-auto">
+                <h1>News Management System</h1>
+            </div>
+            </div>
         </div>
     </div>
 
