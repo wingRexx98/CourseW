@@ -202,8 +202,14 @@ function getSelected($conn)
     <section data-role="page">
         <header>
             <div class="header-footer">
-                <div id="header" class="col">
-                    <h1>News Management System</h1>
+                <div id="header" class="row justify-content-between">
+                    <div class="col-auto">
+                        <h1>News Management System</h1>
+                    </div>
+                    <div class="col-7">
+                        <button class="btn btn-link">Home</button>
+                        <button class="btn btn-link">Log out</button>
+                    </div>
                 </div>
             </div>
         </header>
