@@ -11,89 +11,92 @@ $success_word = "";
 $success_img = "";
 
 // Check if the form was submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     // Check if word file was uploaded without errors
-    if(isset($_FILES["word"]) && $_FILES["word"]["error"] == 0){
+    if (isset($_FILES["word"]) && $_FILES["word"]["error"] == 0) {
         $allowed = array("doc" => "application/msword", "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
         $filename = $_FILES["word"]["name"];
         $filetype = $_FILES["word"]["type"];
         $filesize = $_FILES["word"]["size"];
-        
-        $savename = "PDF".time();
-        
-    
+
+        $savetype = array_search($filetype, $allowed);
+        $savename = "DOC" . time().".".$savetype;
+
+
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if(!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
-    
+        if (!array_key_exists($ext, $allowed)) $error_word = "Please select a valid file format.";
+
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
-    
+        if ($filesize > $maxsize) $error_word = "File size is larger than the allowed limit.";
+
         // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
+        if (in_array($filetype, $allowed)) {
             // Check whether file exists before uploading it
-            if(file_exists("upload/word/" . $savename)){
+            if (file_exists("upload/word/" . $savename)) {
                 $error_word = $savename . " already exists.";
-            } else{
+            } else {
                 move_uploaded_file($_FILES["word"]["tmp_name"], "upload/word/" . $savename);
                 // sql insert file url into db
                 $userid = $_SESSION["id"];
                 $submitdate = date("Y-m-d");
-                            
-                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('".$userid."', '".$submitdate."', '".$savename."', 'image url', 0);";
+
+                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', '" . $savename . "', 'image url', 0);";
                 if ($conn->query($sql) === true) {
                     $success_word = "Your file was uploaded successfully.";
                 } else {
                     $error_word = "Error: " . $sql . "<br>" . $conn->error;
-                } 
-//                $conn->close();
-            } 
-        } else{
-            $error_word = "There was a problem uploading your file. Please try again."; 
+                }
+                //                $conn->close();
+            }
+        } else {
+            $error_word = "There was a problem uploading your file. Please try again.";
         }
     }
-    
+
     // Check if img file was uploaded without errors
-    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" );
+    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0) {
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         $filename = $_FILES["photo"]["name"];
-        
+
         $filetype = $_FILES["photo"]["type"];
         $filesize = $_FILES["photo"]["size"];
-        $savename = "IMG".time();
+
+        $savetype = array_search($filetype, $allowed);
+        $savename = "IMG" . time().".".$savetype;
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
         //echo $ext;
-        if(!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
-    
+        if (!array_key_exists($ext, $allowed)) $error_img = "Please select a valid file format.";
+
         // Verify file size - 5MB maximum
         $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
-    
+        if ($filesize > $maxsize) $error_img = "File size is larger than the allowed limit.";
+
         // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
+        if (in_array($filetype, $allowed)) {
             // Check whether file exists before uploading it
-            if(file_exists("upload/image/" . $savename)){
+            if (file_exists("upload/image/" . $savename)) {
                 $error_img = $savename . " already exists.";
             } else {
                 move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/image/" . $savename);
                 // sql insert file url into db
                 $userid = $_SESSION["id"];
                 $submitdate = date("Y-m-d");
-                            
-                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('".$userid."', '".$submitdate."', 'word url', '".$savename."', 0);";
+
+                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', 'word url', '" . $savename . "', 0);";
                 if ($conn->query($sql) === TRUE) {
                     $success_img = "Your file was uploaded successfully.";
                 } else {
                     $error_img = "Error: " . $sql . "<br>" . $conn->error;
-                } 
-//                $conn->close();
+                }
+                //                $conn->close();
             }
-        } else{
-            $error_img = "There was a problem uploading your file. Please try again."; 
+        } else {
+            $error_img = "There was a problem uploading your file. Please try again.";
             //echo $filetype;
         }
     }
@@ -104,91 +107,100 @@ if (isset($_POST['id'])) {
     deleteById($id, $conn);
 }
 
-function deleteById($id, $conn){
-    $sql = "DELETE FROM submission WHERE submission_id = ".$id.";";
+function deleteById($id, $conn)
+{
+    $sql = "DELETE FROM submission WHERE submission_id = " . $id . ";";
     echo $sql;
-if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
-} else {
-    echo "Error deleting record: " . $conn->error;
-}
+    if ($conn->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
 }
 
-function getFacultyName($conn){
-    $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = ".$_SESSION["faculty"].";";
+function getFacultyName($conn)
+{
+    $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = " . $_SESSION["faculty"] . ";";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    // output data of each row
-        while($row = $result->fetch_assoc()) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
             $facultyname = $row['faculty_name'];
-            echo '<h2 class="col">Faculty of '.$facultyname.'</h2>';
+            echo '<h2 class="col">Faculty of ' . $facultyname . '</h2>';
         }
-    } 
+    }
 }
 
-function uploadedWord($conn) {
-    $sql = "SELECT * FROM submission WHERE user_id =".$_SESSION["id"]. ";";
+function uploadedWord($conn)
+{
+    $sql = "SELECT * FROM submission WHERE user_id =" . $_SESSION["id"] . ";";
     $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $rowid = $row["submission_id"];
-        $filename = $row["word_url"];
-        if ($filename != "word url"){echo '<tr>
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $rowid = $row["submission_id"];
+            $filename = $row["word_url"];
+            if ($filename != "word url") {
+                echo '<tr>
                                         <td>
-                                            <a href="upload/word/'.$filename.'" class="">
-                                                '.$filename.'
+                                            <a href="upload/word/' . $filename . '" class="">
+                                                ' . $filename . '
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="'.$rowid.'">
+                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="' . $rowid . '">
                                                 Delete
                                             </a>
                                         </td>
-                                    </tr>';}
+                                    </tr>';
+            }
+        }
     }
-}
-//$conn->close();
+    //$conn->close();
 }
 
-function uploadedImg($conn) {
-    
-    $sql = "SELECT * FROM submission WHERE user_id =".$_SESSION["id"]. ";";
+function uploadedImg($conn)
+{
+
+    $sql = "SELECT * FROM submission WHERE user_id =" . $_SESSION["id"] . ";";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    // output data of each row
-        while($row = $result->fetch_assoc()) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
             $rowid = $row["submission_id"];
             $filename = $row["image_url"];
-            if ($filename != "image url"){echo '<tr>
+            if ($filename != "image url") {
+                echo '<tr>
                                         <td>
-                                            <a href="upload/image/'.$filename.'" class="">
-                                                 '.$filename.'
+                                            <a href="upload/image/' . $filename . '" class="">
+                                                 ' . $filename . '
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="'.$rowid.'">
+                                            <a href="" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="' . $rowid . '">
                                                 Delete
                                             </a>
                                         </td>
-                                    </tr>';}
+                                    </tr>';
+            }
         }
     }
-//$conn->close();
+    //$conn->close();
 }
 
-function deleteUpload($conn){
+function deleteUpload($conn)
+{
     // sql to delete a record
-$sql = "DELETE FROM submission WHERE id=3";
+    $sql = "DELETE FROM submission WHERE id=3";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Record deleted successfully";
-} else {
-    echo "Error deleting record: " . $conn->error;
-}
+    if ($conn->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $conn->error;
+    }
 
-//$conn->close();
+    //$conn->close();
 }
 ?>
 
@@ -212,7 +224,7 @@ if ($conn->query($sql) === TRUE) {
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
-        Home
+        Student
     </title>
 </head>
 
@@ -222,13 +234,15 @@ if ($conn->query($sql) === TRUE) {
         <div class="header-footer">
             <div id="header" class="row justify-content-between">
                 <div class="col-auto">
-                    <h1><a style="color: #000000;
-    text-decoration: none;" href="index.php">News Management System</a></h1>
+                    <a href="index.php">
+                        <h1>News Management System</h1>
+                    </a>
                 </div>
-                <div class="col-7">
-                    <h5><a style="color: #000000;
-    text-decoration: none;" href="logout.php">Logout</a></h5>
-                </div>
+                <span class="col-3">
+                    <a class="btn btn-link" href="logout.php">
+                        <span>Logout</span>
+                    </a>
+                </span>
             </div>
         </div>
         <div class="container">
@@ -259,21 +273,6 @@ if ($conn->query($sql) === TRUE) {
                                     <?php
                                     uploadedWord($conn);
                                     ?>
-                                    <!--
-                                    <tr>
-                                        <td>
-                                            <a href="#" class="">
-                                                Submission name
-                                                 click to download 
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
--->
                                 </tbody>
                             </table>
                         </div>
