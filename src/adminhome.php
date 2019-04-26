@@ -13,36 +13,32 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="js/bootstrap.min.js">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
-        Home
+        Admin
     </title>
 </head>
 
 <body>
     <!--Default header-->
-        <div class="header-footer">
-            <div id="header" class="row justify-content-between">
-                <div class="col-auto">
-                    <h1><a style="color: #000000;
-    text-decoration: none;" href="index.php">News Management System</a></h1>
-                </div>
-                <div class="col-7">
-                    <h5><a style="color: #000000;
-    text-decoration: none;" href="logout.php">Logout</a></h5>
-                </div>
+    <div class="header-footer">
+        <div id="header" class="row justify-content-between">
+            <div class="col-auto">
+                <a href="index.php">
+                    <h1>News Management System</h1>
+                </a>
             </div>
+            <span class="col-3">
+                <a class="btn btn-link" href="logout.php">
+                    <span>Logout</span>
+                </a>
+            </span>
         </div>
+    </div>
 
     <!--body-->
     <div class="container">
@@ -95,8 +91,7 @@
                                             <td>asd</td>
                                             <td>asd</td>
                                             <td>
-                                                <a href="#" class="getRowID" data-toggle="modal"
-                                                    data-target="#deleteModal" data-row-id="1">
+                                                <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
                                                     Delete
                                                 </a>
                                             </td>
@@ -154,7 +149,7 @@
                         <div id="submission" class="info-box col-25 card btn-light">
                             <div class="card-body">
                                 <label>
-                                    <h3 class="card-title">User Roles:</h3>
+                                    <h3 class="card-title">User Roles</h3>
                                 </label>
                                 <table class="table">
                                     <tr>
@@ -184,7 +179,7 @@
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="rolename">Role Name</label>
                                             <input type="text" class="form-control" name="rolename" id="rolename" />
-                                        </div>                                      
+                                        </div>
                                         <button type="button" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
@@ -195,8 +190,10 @@
                 <div id="Faculty" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h3 class="card-title">Faculties:</h3>
                             <div class="card-body">
+                                <label>
+                                    <h3 class="card-title">Faculties</h3>
+                                </label>
                                 <table class="table">
                                     <tr>
                                         <th>Faculty ID</th>
@@ -216,30 +213,33 @@
                         </div>
                         <!--Input For New-->
                         <div id="submission" class="info-box col-10 card btn-light">
+
                             <div class="card-body">
-                                <div class="card-body">
-                                	<label>
-                                    	<h3 class="card-title">Add a new faculty</h3>
-                                	</label>
-                                	<div class="card-text">
-                                    	<form>
-                                        	<div data-role="fieldcontain" class="form-group">
-                                            	<label for="facultyname">Faculty Name</label>
-                                            	<input type="text" class="form-control" name="facultyname" id="facultyname" />
-                                        	</div>                                      
-                                        	<button type="button" class="btn btn-primary">Add</button>
-                                    	</form>
-                               		</div>
-                            	</div>
+                                <label>
+                                    <h3 class="card-title">Add a new faculty</h3>
+                                </label>
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="facultyname">Faculty Name</label>
+                                            <input type="text" class="form-control" name="facultyname" id="facultyname" />
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div id="Closure" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h3 class="card-title">Closure Dates:</h3>
                             <div class="card-body">
+                                <label>
+                                    <h3 class="card-title">Closure Dates</h3>
+                                </label>
                                 <table class="table">
                                     <tr>
                                         <th>Closure ID</th>
@@ -260,22 +260,22 @@
                         </div>
                         <!--Input For New-->
                         <div id="submission" class="info-box col-10 card btn-light">
+
                             <div class="card-body">
-                                <div class="card-body">
-                                	<label>
-                                    	<h3 class="card-title">Add a new date</h3>
-                                	</label>
-                                	<div class="card-text">
-                                    	<form>
-                                        	<div data-role="fieldcontain" class="form-group">
-                                            	<label for="closuredate">Closure Date:</label>
-                                            	<input type="date" class="form-control" name="closuredate" id="closuredate" />
-                                        	</div>                                      
-                                        	<button type="button" class="btn btn-primary">Add</button>
-                                    	</form>
-                               		</div>
-                            	</div>
+                                <label>
+                                    <h3 class="card-title">Add a new date</h3>
+                                </label>
+                                <div class="card-text">
+                                    <form>
+                                        <div data-role="fieldcontain" class="form-group">
+                                            <label for="closuredate">Closure Date:</label>
+                                            <input type="date" class="form-control" name="closuredate" id="closuredate" />
+                                        </div>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </form>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

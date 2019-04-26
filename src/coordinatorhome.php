@@ -194,7 +194,7 @@ function getSelected($conn)
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
-        Home
+        Faculty Manager
     </title>
 </head>
 
@@ -204,13 +204,15 @@ function getSelected($conn)
         <div class="header-footer">
             <div id="header" class="row justify-content-between">
                 <div class="col-auto">
-                    <h1><a style="color: #000000;
-    text-decoration: none;" href="index.php">News Management System</a></h1>
+                    <a href="index.php">
+                        <h1>News Management System</h1>
+                    </a>
                 </div>
-                <div class="col-7">
-                    <h5><a style="color: #000000;
-    text-decoration: none;" href="logout.php">Logout</a></h5>
-                </div>
+                <span class="col-3">
+                    <a class="btn btn-link" href="logout.php">
+                        <span>Logout</span>
+                    </a>
+                </span>
             </div>
         </div>
         <div class="container">
