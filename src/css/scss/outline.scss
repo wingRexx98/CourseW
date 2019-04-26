@@ -4,6 +4,7 @@
 h1,
 h2 {
   font-family: $header-font;
+  color: black !important;
 }
 
 /* Header and Footer */
@@ -15,6 +16,10 @@ h2 {
 #header {
   height: 100px;
   padding: 25px;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 #footer {
@@ -39,7 +44,7 @@ h2 {
     max-height: $max-height-card-small-text;
     overflow: auto !important;
   }
-  
+
   td {
     vertical-align: middle !important;
   }
