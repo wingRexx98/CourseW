@@ -154,7 +154,7 @@
                         <div id="submission" class="info-box col-25 card btn-light">
                             <div class="card-body">
                                 <label>
-                                    <h2 class="card-title">User Roles:</h2>
+                                    <h3 class="card-title">User Roles:</h3>
                                 </label>
                                 <table class="table">
                                     <tr>
@@ -195,7 +195,7 @@
                 <div id="Faculty" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h2 class="card-title">Faculties:</h2>
+                            <h3 class="card-title">Faculties:</h3>
                             <div class="card-body">
                                 <table class="table">
                                     <tr>
@@ -238,7 +238,7 @@
                 <div id="Closure" class="tab-pane fade container">
                     <div id="body" class="row justify-content-between">
                         <div id="submission" class="info-box col-25 card btn-light">
-                            <h2 class="card-title">Closure Dates:</h2>
+                            <h3 class="card-title">Closure Dates:</h3>
                             <div class="card-body">
                                 <table class="table">
                                     <tr>
@@ -252,8 +252,7 @@
                                         <td>1</td>
                                         <td>1/1/1111</td>
                                         <td>1</td>
-                                        <td><input type="button" name="Contact" value="Delete"
-                                                class="btn btn-link btn-lg">
+                                        <td><a href="#">Delete</a>
                                         </td>
                                     </tr>
                                 </table>
