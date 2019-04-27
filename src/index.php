@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // if password is not empty
     if(!empty(trim($_POST["password"]))){
-        $password = trim($_POST["password"]);
+        $password = md5(trim($_POST["password"]));
     }
     
     // Validate credentials
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["faculty"] = $faculty_id;
                             
                             // Redirect user to their page
-                            header("location: index.php");
+                            header("location: login.php");
                         } else{
                             // Display an error message if password is not valid
                             $invalid_err = "Invalid username/password";
@@ -107,11 +107,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <!--Default header-->
     <div class="header-footer">
-        <div id="header" class="row justify-content-between">
-            <div class="col-auto">
-                <h1>News Management System</h1>
-            </div>
-            </div>
+        <div id="header" class="col">
+            <h1>News Management System</h1>
         </div>
     </div>
 
