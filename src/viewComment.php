@@ -7,7 +7,7 @@ if (isset($_GET['file'])) {
     $fileid = $_GET['file'];
     $filetype = $_GET['filetype'];
     $filename = $_GET['filename'];
-    if($filetype = 'word'){
+    if($filetype == 'word'){
         $fileurl = 'upload/word/'.$filename;
     }else{
         $fileurl = 'upload/image/'.$filename;
