@@ -29,7 +29,7 @@ function getFacultyName($conn)
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             $facultyname = $row['faculty_name'];
-            echo '<h1 class="col">Faculty of ' . $facultyname . ' - Guest Page</h1>';
+            echo '<h2 class="col">Faculty of ' . $facultyname . ' - Guest Page</h2>';
         }
     }
 }
@@ -158,23 +158,24 @@ function getSubmission($conn)
                         <h3>Submission</h3>
                     </label>
 
-                    <table id="submissionTable" class="table">
-                        <thead>
-                            <tr>
-                                <th>Student</th>
-                                <th>Submission</th>
-                                <th>Date</th>
-                                <th>Comment</th>
-                                <th>Publication</th>
-                            </tr>
-                        </thead>
-                        <tbody id="submissionBody">
-                            <?php
-                            getSubmission($conn);
-                            ?>
-                        </tbody>
-                    </table>
-
+                    <div class="long-text ">
+                        <table id="submissionTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Submission</th>
+                                    <th>Date</th>
+                                    <th>Comment</th>
+                                    <th>Publication</th>
+                                </tr>
+                            </thead>
+                            <tbody id="submissionBody">
+                                <?php
+                                getSubmission($conn);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

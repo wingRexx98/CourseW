@@ -63,7 +63,7 @@ function getFacultyName($conn)
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             $facultyname = $row['faculty_name'];
-            echo '<h1 class="col">Faculty of ' . $facultyname . '</h1>';
+            echo '<h2 class="col">Faculty of ' . $facultyname . '</h2>';
         }
     }
 }
@@ -232,22 +232,24 @@ function getSelected($conn)
                         <h3>Submission</h3>
                     </label>
 
-                    <table id="submissionTable" class="table">
-                        <thead>
-                            <tr>
-                                <th>Student</th>
-                                <th>Submission</th>
-                                <th>Date</th>
-                                <th>Comment</th>
-                                <th>Publication</th>
-                            </tr>
-                        </thead>
-                        <tbody id="submissionBody">
-                            <?php
-                            getSubmission($conn);
-                            ?>
-                        </tbody>
-                    </table>
+                    <div class="long-text ">
+                        <table id="submissionTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Submission</th>
+                                    <th>Date</th>
+                                    <th>Comment</th>
+                                    <th>Publication</th>
+                                </tr>
+                            </thead>
+                            <tbody id="submissionBody">
+                                <?php
+                                getSubmission($conn);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
 
@@ -255,21 +257,23 @@ function getSelected($conn)
                     <label for="submissionTable">
                         <h3>Publication</h3>
                     </label>
-                    <table id="publishTable" class="table">
-                        <thead>
-                            <tr>
-                                <th>Student</th>
-                                <th>Submission</th>
-                                <th>Date</th>
-                                <th>Publication</th>
-                            </tr>
-                        </thead>
-                        <tbody id="publishBody">
-                            <?php
-                            getSelected($conn);
-                            ?>
-                        </tbody>
-                    </table>
+                    <div class="long-text ">
+                        <table id="publishTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Submission</th>
+                                    <th>Date</th>
+                                    <th>Publication</th>
+                                </tr>
+                            </thead>
+                            <tbody id="publishBody">
+                                <?php
+                                getSelected($conn);
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

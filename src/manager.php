@@ -106,10 +106,10 @@ function getSubmission($conn, $facultyId)
 <!--body-->
 <div class="container">
     <div id="body">
-        <div id="AdminTitle" class="row pt-3">
+        <div id="AdminTitle" class="row">
 
             <label>
-                <h2 class="col">Manager Home Page</h2>
+                <h2 class="col">Director Manager Home Page</h2>
             </label>
 
         </div>
