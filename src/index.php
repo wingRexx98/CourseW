@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     if(mysqli_stmt_fetch($stmt)){
                         if($password === $hashed_password){
                             // Password is correct, so start a new session
-                            session_start();
+//                            session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -54,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["faculty"] = $faculty_id;
                             
                             // Redirect user to their page
-                            header("location: login.php");
+                            header("location: index.php");
                         } else{
                             // Display an error message if password is not valid
                             $invalid_err = "Invalid username/password";

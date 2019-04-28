@@ -12,11 +12,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     case 2:
         header("location: guesthome.php");
         break;
-    case 3:
-        header("location: coordinatorhome.php");
-        break;
     case 4:
         header("location: manager.php");
+        break;
+    case 3:
+        header("location: coordinatorhome.php");
         break;
     case 5:
         header("location: studenthome.php");

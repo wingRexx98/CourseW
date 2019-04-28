@@ -137,9 +137,13 @@ function getSubmission($conn, $facultyId)
                                     <h3 class="card-title">Faculty of Computing</h3>
                                 </label>
                                 <div class="col-36 mb-3">
-                                    <button type="button" class="btn btn-primary zipDownload1">
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='testzip.php?facultyid=1'">Download all published submission</button>
+                                    <!--<a href="testzip.php?facultyid=1">Download as zip</a>-->
+<!--
+                                    <button type="button" class="btn btn-primary zipFacultyOne">
                                         <span>Download all published submission</span>
                                     </button>
+-->
                                 </div>
                                 <div class="long-text col-36">
                                     <table class="card-text table">
@@ -149,7 +153,7 @@ function getSubmission($conn, $facultyId)
                                                 <th>User ID</th>
                                                 <th>Submit date</th>
                                                 <th>Submission</th>
-                                                <th>Comment<th>
+                                                <th>Comment</th>
                                                 <th>Publication status</th>
                                             </tr>
                                         </thead>
@@ -174,9 +178,7 @@ function getSubmission($conn, $facultyId)
                                     <h3 class="card-title">Faculty of Business</h3>
                                 </label>
                                 <div class="col-36 mb-3">
-                                    <button type="button" class="btn btn-primary zipDownload2">
-                                        <span>Download all published submission</span>
-                                    </button>
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='testzip.php?facultyid=2'">Download all published submission</button>
                                 </div>
                                 <div class="long-text col-36">
                                     <table class="card-text table">
@@ -186,6 +188,7 @@ function getSubmission($conn, $facultyId)
                                                 <th>User ID</th>
                                                 <th>Submit date</th>
                                                 <th>Submission</th>
+                                                <th>Comment</th>
                                                 <th>Publication status</th>
                                             </tr>
                                         </thead>
@@ -210,9 +213,8 @@ function getSubmission($conn, $facultyId)
                                     <h3 class="card-title">Faculty of Design</h3>
                                 </label>
                                 <div class="col-36 mb-3">
-                                    <button type="button" class="btn btn-primary zipDownload3">
-                                        <span>Download all published submission</span>
-                                    </button>
+                                    <!--<a href="testzip.php?facultyid=3">Download as zip</a>-->
+                                    <button type="button" class="btn btn-primary" onclick="window.location.href='testzip.php?facultyid=3'">Download all published submission</button>
                                 </div>
                                 <div class="long-text col-36">
                                     <table class="card-text table">
@@ -222,6 +224,7 @@ function getSubmission($conn, $facultyId)
                                                 <th>User ID</th>
                                                 <th>Submit date</th>
                                                 <th>Submission</th>
+                                                <th>Comment</th>
                                                 <th>Publication status</th>
                                             </tr>
 

@@ -25,7 +25,7 @@ function addUser($conn){
     $faculty_id = $_POST["select"];
     $username = $_POST["username"];
     $password = $_POST["password"];
-$sql = "INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('".$role_id."', '".$faculty_id."', '".$username."', '".$password."');
+$sql = "INSERT INTO `user` (`role_id`, `faculty_id`, `username`, `password`) VALUES ('".$role_id."', '".$faculty_id."', '".$username."', MD5('".$password."'));
 ";
     
                 if ($conn->query($sql) === true) {

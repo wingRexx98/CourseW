@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Authentication
 require_once "authenticator.php";
 // Include config file
@@ -20,7 +21,7 @@ function getFacultyName($conn)
 }
 
 
-$to      = 'tunmgch16383@gmail.com';
+$to      = 'gianghmgch16332@fpt.edu.vn';
 $subject = 'New Submission in The Newspaper Management System.';
 $message = '
 Hello '.$username.'.
@@ -28,7 +29,7 @@ There is a new submission on the NMS.
 Submission is from the: '.$studentemail.'
 Please log on and review it at your earliest convenient. Comment function will be available till '.$date.'
 
-(This is an automated message, please do not respond to this message)
+(This is an automated message, please do not respond to this message.)
 ';
 $headers = 'From: webmaster@example.com' . "\r\n" .
     'Reply-To: webmaster@example.com' . "\r\n" .

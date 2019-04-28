@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-//    header('Location: mail.php?student='.$_SESSION["username"]);
+    header('Location: mail.php?student='.$_SESSION["username"]);
 }
 
 if (isset($_POST['id'])) {

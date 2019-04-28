@@ -6,7 +6,7 @@ require_once "config.php";
 
 function getUser($conn)
 {
-    $sql = "SELECT * FROM user;";
+    $sql = "SELECT * FROM user WHERE role_id > 1;";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -51,7 +51,7 @@ function getRole($conn)
     }
 }
 
-function getFalc($conn)
+function getFaculty($conn)
 {
     $sql = "SELECT * FROM faculty;";
     $result = $conn->query($sql);
@@ -91,6 +91,33 @@ function getClosure($conn)
                                         <td><a href="adminDelete.php?type=closure&id='.$closure_id.'">Delete</a>
                                         </td>
                                     </tr>';
+        }
+    }
+}
+
+function getRoleSelect($conn){
+$sql = "SELECT * FROM role;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $role_id = $row['role_id'];
+            $role_name = $row['role_name'];
+           echo '<option value="'.$role_id.'">'.$role_name.'</option>';
+        }
+    }
+}
+
+function getFacultySelect($conn){
+$sql = "SELECT * FROM faculty;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $faculty_id = $row['faculty_id'];
+            $faculty_name = $row['faculty_name'];
+            
+            echo '<option value="'.$faculty_id.'">'.$faculty_name.'</option>';
         }
     }
 }
@@ -223,18 +250,28 @@ function getClosure($conn)
                                             <label for="role" class="select">Choose Role:</label>
                                             <!--Get role name from db-->
                                             <select id="select" class="form-control" name="role" required>
+                                                <?php
+                                                getRoleSelect($conn);
+                                                ?>
+<!--
                                                 <option value="1">Student</option>
                                                 <option value="2">Coordinator</option>
                                                 <option value="3">Manager</option>
+-->
                                             </select>
                                         </div>
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="select" class="select">Choose Faculty:</label>
                                             <!--Get faculty name from db-->
                                             <select id="select" class="form-control" name="select" required>
+                                                <?php
+                                                getFacultySelect($conn);
+                                                ?>
+<!--
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
+-->
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Add</button>
@@ -306,7 +343,7 @@ function getClosure($conn)
                                         <th>Delete</th>
                                     </tr>
                                     <?php
-                                    getFalc($conn);
+                                    getFaculty($conn);
                                     ?>
 <!--
                                     <tr>
