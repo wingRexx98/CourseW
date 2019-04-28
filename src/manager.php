@@ -25,9 +25,11 @@ function getSubmission($conn, $facultyId)
             if ($row['image_url'] != "image url") {
                 $submission = $row['image_url'];
                 $submissionlink = 'upload/image/' . $row['image_url'] . '';
+                $filetype = 'image';
             } else {
                 $submission = $row['word_url'];
                 $submissionlink = 'upload/word/' . $row['word_url'] . '';
+                $filetype = 'word';
             }
             $submission_date = $row['submission_date'];
             if ($row['publication'] == 0) {
@@ -45,7 +47,12 @@ function getSubmission($conn, $facultyId)
                                                     <a href="' . $submissionlink . '">
                                                         ' . $submission . '
                                                     </a>
-                                                </td> <!-- Click to download -->
+                                                </td>
+                                                <td>
+                                                    <a href="viewComment.php?file=' . $rowid . '&filename=' . $submission . '&filetype=' . $filetype . '" class="">
+                                                        Comment
+                                                    </a>
+                                                </td>
                                                 <td>' . $published . '</td>
                                             </tr>';
         }
@@ -99,10 +106,10 @@ function getSubmission($conn, $facultyId)
 <!--body-->
 <div class="container">
     <div id="body">
-        <div id="AdminTitle" class="row pt-3">
+        <div id="AdminTitle" class="row">
 
             <label>
-                <h2 class="col">Manager Home Page</h2>
+                <h2 class="col">Director Manager Home Page</h2>
             </label>
 
         </div>
@@ -142,6 +149,7 @@ function getSubmission($conn, $facultyId)
                                                 <th>User ID</th>
                                                 <th>Submit date</th>
                                                 <th>Submission</th>
+                                                <th>Comment<th>
                                                 <th>Publication status</th>
                                             </tr>
                                         </thead>

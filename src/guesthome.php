@@ -21,40 +21,6 @@ if (isset($_POST['comment'])) {
     updateComment($id, $comment, $conn);
 }
 
-function updateComment($id, $comment, $conn)
-{
-    $sql = "INSERT INTO comment (submission_id, content) VALUES ('" . $id . "', '" . $comment . "');";
-    echo ($sql);
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
-
-function publish($id, $conn)
-{
-    $sql = "UPDATE submission SET publication = 1 WHERE submission_id=" . $id . "";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
-
-function unpublish($id, $conn)
-{
-    $sql = "UPDATE submission SET publication = 0 WHERE submission_id=" . $id . "";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Record updated successfully 1";
-    } else {
-        echo "Error updating record: " . $conn->error;
-    }
-}
-
 function getFacultyName($conn)
 {
     $sql = "SELECT faculty_name FROM faculty WHERE faculty_id = " . $_SESSION["faculty"] . ";";
@@ -63,7 +29,7 @@ function getFacultyName($conn)
         // output data of each row
         while ($row = $result->fetch_assoc()) {
             $facultyname = $row['faculty_name'];
-            echo '<h2 class="col">Faculty of ' . $facultyname . '</h2>';
+            echo '<h2 class="col">Faculty of ' . $facultyname . ' - Guest Page</h2>';
         }
     }
 }
@@ -89,7 +55,7 @@ function getFacultyStudent($conn)
 function getSubmission($conn)
 {
 
-    $sql = "SELECT * FROM submission INNER JOIN user ON submission.user_id = user.user_id WHERE publication = 0 AND faculty_id =" . $_SESSION["faculty"] . ";";
+    $sql = "SELECT * FROM submission INNER JOIN user ON submission.user_id = user.user_id WHERE faculty_id =" . $_SESSION["faculty"] . ";";
     //    echo $sql;
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -97,6 +63,11 @@ function getSubmission($conn)
         while ($row = $result->fetch_assoc()) {
             $rowid = $row['submission_id'];
             $username = $row['username'];
+            if ($row['publication'] == 0) {
+                $published = 'No';
+            } else {
+                $published = 'Yes';
+            }
             if ($row['image_url'] != "image url") {
                 $submission = $row['image_url'];
                 $submissionlink = 'upload/image/' . $row['image_url'] . '';
@@ -117,60 +88,15 @@ function getSubmission($conn)
                                 </td>
                                 <td>' . $submission_date . '</td>
                                 <td>
-                                    <a href="updateComment.php?file=' . $rowid . '&filename=' . $submission . '&filetype=' . $filetype . '" class="">
+                                    <a href="viewComment.php?file=' . $rowid . '&filename=' . $submission . '&filetype=' . $filetype . '" class="">
                                                 Comment
                                             </a>
                                 </td>
-                                <td>
-                                    <button class="btn btn-info publishBtn" value="' . $rowid . '">
-                                        Publish
-                                    </button>
-                                </td>
+                                <td>' . $published . '</td>
                             </tr>';
         }
     } else {
         // echo "<p>No records</p>";
-    }
-    //$conn->close();
-}
-
-function getSelected($conn)
-{
-
-    $sql = "SELECT * FROM submission INNER JOIN user ON submission.user_id = user.user_id WHERE publication = 1 AND faculty_id =" . $_SESSION["faculty"] . ";";
-    //    echo $sql;
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while ($row = $result->fetch_assoc()) {
-            $rowid = $row['submission_id'];
-            $username = $row['username'];
-            if ($row['image_url'] != "image url") {
-                $submission = $row['image_url'];
-                $submissionlink = 'upload/image/' . $row['image_url'] . '';
-            } else {
-                $submission = $row['word_url'];
-                $submissionlink = 'upload/word/' . $row['word_url'] . '';
-            }
-            $submission_date = $row['submission_date'];
-
-            echo '<tr>
-                                <td>
-                                    <a href="#">' . $username . '</a>
-                                </td>
-                                <td>
-                                    <a href="' . $submissionlink . '">' . $submission . '</a>
-                                </td>
-                                <td>' . $submission_date . '</td>
-                                <td>
-                                    <button class="btn btn-info unpublishBtn" value="' . $rowid . '">
-                                        Unpublish
-                                    </button>
-                                </td>
-                            </tr>';
-        }
-    } else {
-        // echo "<tr><td>No records</td></tr>";
     }
     //$conn->close();
 }
@@ -196,7 +122,7 @@ function getSelected($conn)
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
-        Faculty Manager
+        Guest
     </title>
 </head>
 
@@ -227,7 +153,7 @@ function getSelected($conn)
             </div>
 
             <div id="body" class="row justify-content-between">
-                <div class="col-20">
+                <div class="col-36">
                     <label for="submissionTable">
                         <h3>Submission</h3>
                     </label>
@@ -249,54 +175,6 @@ function getSelected($conn)
                                 ?>
                             </tbody>
                         </table>
-                    </div>
-
-                </div>
-
-                <div class="col-16">
-                    <label for="submissionTable">
-                        <h3>Publication</h3>
-                    </label>
-                    <div class="long-text ">
-                        <table id="publishTable" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Submission</th>
-                                    <th>Date</th>
-                                    <th>Publication</th>
-                                </tr>
-                            </thead>
-                            <tbody id="publishBody">
-                                <?php
-                                getSelected($conn);
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal" id="commentModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="commentModalLabel">Add comment to
-                                submission</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-                        <form>
-                            <div class="form-group modal-body">
-                                <input type="hidden" class="form-control" id="rowID" value="">
-                                <textarea type="text" class="form-control comment" placeholder="Enter your comment."></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary formSubmit">Submit</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>

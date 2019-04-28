@@ -14,6 +14,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 }
                 break;
             case 4:
+
                 if (!($current_page != "manager"or $current_page = "viewComment")) {
                     die("Unauthorized access.");
                 }
@@ -23,9 +24,16 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     die("Unauthorized access.");
                 }
                 break;
-                //            case 2:
-                //            if ($current_page != "studenthome"){die("Unauthorized access.");}
-                //        break;
+            case 2:
+                if (!($current_page = "guesthome" or $current_page = "viewComment")) {
+                    die("Unauthorized access.");
+                }
+                break;
+            case 1:
+                if ($current_page != "adminhome") {
+                    die("Unauthorized access.");
+                }
+                break;
             default:
                 break;
         }
