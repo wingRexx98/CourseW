@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $userid = $_SESSION["id"];
                 $submitdate = date("Y-m-d");
 
-                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', '" . $savename . "', 'image url', 0);";
+                $sql = "INSERT INTO `submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', '" . $savename . "', 'image url', 0);";
                 if ($conn->query($sql) === true) {
                     $success_word = "Your file was uploaded successfully.";
                 } else {
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $userid = $_SESSION["id"];
                 $submitdate = date("Y-m-d");
 
-                $sql = "INSERT INTO `r69420`.`submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', 'word url', '" . $savename . "', 0);";
+                $sql = "INSERT INTO `submission` (`user_id`, `submission_date`, `word_url`, `image_url`, `publication`) VALUES ('" . $userid . "', '" . $submitdate . "', 'word url', '" . $savename . "', 0);";
                 if ($conn->query($sql) === TRUE) {
                     $success_img = "Your file was uploaded successfully.";
                 } else {
@@ -144,7 +144,7 @@ function uploadedWord($conn)
             if ($filename != "word url") {
                 echo '<tr>
                                         <td>
-                                            <a href="upload/word/' . $filename . '" class="">
+                                            <a href="viewComment.php?file='.$rowid.'&filename='.$filename.'&filetype=word" class="">
                                                 ' . $filename . '
                                             </a>
                                         </td>
@@ -157,7 +157,6 @@ function uploadedWord($conn)
             }
         }
     }
-    //$conn->close();
 }
 
 function uploadedImg($conn)
@@ -173,8 +172,8 @@ function uploadedImg($conn)
             if ($filename != "image url") {
                 echo '<tr>
                                         <td>
-                                            <a href="upload/image/' . $filename . '" class="">
-                                                 ' . $filename . '
+                                            <a href="viewComment.php?file='.$rowid.'&filename='.$filename.'&filetype=image" class="">
+                                                ' . $filename . '
                                             </a>
                                         </td>
                                         <td>

@@ -52,3 +52,16 @@ CREATE TABLE IF NOT EXISTS comment (
     FOREIGN KEY (submission_id) REFERENCES submission(submission_id)
 );
 
+DELIMITER $$
+CREATE 
+    TRIGGER check_date BEFORE INSERT 
+    ON submission
+    FOR EACH ROW BEGIN
+        IF(NEW.submission_date > CURDATE() OR NEW.submission_date > (SELECT closure_date FROM closure WHERE academic_year = YEAR(CURDATE()) LIMIT 1)) 
+        THEN 
+            signal SQLSTATE '90000' SET message_text = "submission date cannot earlier than current date or later than closure date";
+        END IF;
+    END$$
+
+DELIMITER ;
+

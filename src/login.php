@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // if password is not empty
     if(!empty(trim($_POST["password"]))){
-        $password = trim($_POST["password"]);
+        $password = md5(trim($_POST["password"]));
     }
     
     // Validate credentials

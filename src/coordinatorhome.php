@@ -100,9 +100,11 @@ function getSubmission($conn)
             if ($row['image_url'] != "image url") {
                 $submission = $row['image_url'];
                 $submissionlink = 'upload/image/' . $row['image_url'] . '';
+                $filetype = 'image';
             } else {
                 $submission = $row['word_url'];
                 $submissionlink = 'upload/word/' . $row['word_url'] . '';
+                $filetype = 'word';
             }
             $submission_date = $row['submission_date'];
 
@@ -115,9 +117,9 @@ function getSubmission($conn)
                                 </td>
                                 <td>' . $submission_date . '</td>
                                 <td>
-                                    <button type="button" class="btn btn-link buttonComment" data-toggle="modal" data-target="#commentModal" data-row-id="' . $rowid . '">
-                                        Comment
-                                    </button>
+                                    <a href="updateComment.php?file='.$rowid.'&filename='.$submission.'&filetype='.$filetype.'" class="">
+                                                Comment
+                                            </a>
                                 </td>
                                 <td>
                                     <button class="btn btn-info publishBtn" value="' . $rowid . '">
