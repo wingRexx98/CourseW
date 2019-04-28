@@ -4,9 +4,6 @@ require_once "authenticator.php";
 // Include config file
 require_once "config.php";
 
-
-
-    
 if (isset($_GET['file'])) {
     $fileid = $_GET['file'];
     $filetype = $_GET['filetype'];
@@ -16,8 +13,6 @@ if (isset($_GET['file'])) {
     }else{
         $fileurl = 'upload/image/'.$filename;
     }
-} else {
-    // Fallback behaviour goes here
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -50,6 +45,40 @@ function getComment($conn, $submission_id){
         }
     }
 }
+
+function checkComment($conn, $submission_id){
+    $sql = "SELECT * FROM submission WHERE submission_id =" . $submission_id . ";";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $date = $row["submission_date"];
+            $date = date('Y-m-d', strtotime($date. ' + 14 days'));
+            $current_date = date("Y-m-d");
+            if($date > $current_date){
+                echo '<div class="row pt-3">
+                    <label for="addComment">
+                        <h5>Add a new comment</h5>
+                    </label>
+                </div><div id="addComment" >
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" name="textComment" placeholder="Please insert your comment here."></textarea>
+                            <button type="submit" class="btn btn-primary mt-2">Add comment</button>
+                        </div>
+                    </form>
+                </div>';
+            }else{
+                echo '<div class="row pt-3">
+                    <label for="addComment">
+                        <h5>Comment are disabled by '.$date.'</h5>
+                    </label>
+                </div>';
+            }
+        }
+    }
+}
 ?>
 <!doctype html>
 
@@ -66,15 +95,9 @@ function getComment($conn, $submission_id){
     <!--Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
     <link href="js/bootstrap.min.js">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!--jQuery-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <title>
@@ -121,7 +144,7 @@ function getComment($conn, $submission_id){
                         <?php
                         getComment($conn, $fileid)
                         ?>
-<!--
+                        <!--
                         <tr class="row">
                             <td class="col-30">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -139,11 +162,17 @@ function getComment($conn, $submission_id){
 
             </div>
             <div class="col-36 border-top">
+<!--
                 <div class="row pt-3">
                     <label for="addComment">
                         <h5>Add a new comment</h5>
                     </label>
                 </div>
+-->
+<?php
+                            checkComment($conn,$fileid);
+                            ?>
+                <!--
                 <div id="addComment" >
                     <form action="" method="post">
                         <div class="form-group">
@@ -152,6 +181,7 @@ function getComment($conn, $submission_id){
                         </div>
                     </form>
                 </div>
+-->
             </div>
         </div>
     </div>

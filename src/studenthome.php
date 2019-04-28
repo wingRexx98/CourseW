@@ -100,6 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //echo $filetype;
         }
     }
+    
+//    header('Location: mail.php?student='.$_SESSION["username"]);
 }
 
 if (isset($_POST['id'])) {
@@ -200,6 +202,23 @@ function deleteUpload($conn)
     }
 
     //$conn->close();
+}
+
+function disableSubmit($conn){
+    $sql = "select * from closure where academic_year = YEAR(CURDATE()) LIMIT 1;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $closure_date = $row["closure_date"];
+            $date = date("Y-m-d");
+            if($date <= $closure_date){
+            echo '<button type="submit" name="submit" value="Upload" class="btn btn-primary">Send</button>';
+            }else{
+               echo '<button type="submit" name="submit" value="Upload" class="btn btn-primary" disabled>You can no longer submit</button>' ;
+            }
+        }
+    }
 }
 ?>
 
@@ -399,7 +418,10 @@ function deleteUpload($conn)
                                 <span class="help-block text-success"><?php echo $success_img; ?></span>
 
                             </div>
-                            <button type="submit" name="submit" value="Upload" class="btn btn-primary">Send</button>
+                            <?php
+                            disableSubmit($conn);
+                            ?>
+<!--                            <button type="submit" name="submit" value="Upload" class="btn btn-primary">Send</button>-->
                         </div>
                     </form>
 
