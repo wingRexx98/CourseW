@@ -88,7 +88,7 @@ function getSubmission($conn)
                                 </td>
                                 <td>' . $submission_date . '</td>
                                 <td>
-                                    <a href="viewComment.php?file='.$rowid.'&filename='.$submission.'&filetype='.$filetype.'" class="">
+                                    <a href="viewComment.php?file=' . $rowid . '&filename=' . $submission . '&filetype=' . $filetype . '" class="">
                                                 Comment
                                             </a>
                                 </td>
@@ -153,7 +153,7 @@ function getSubmission($conn)
             </div>
 
             <div id="body" class="row justify-content-between">
-                <div class="col-20">
+                <div class="col-36">
                     <label for="submissionTable">
                         <h3>Submission</h3>
                     </label>
@@ -177,12 +177,14 @@ function getSubmission($conn)
 
                 </div>
             </div>
+        </div>
 
-            <footer data-role="footer">
-                <div id="footer" class="header-footer">
-                    @ 2019 2-1640 group
-                </div>
-            </footer>
+
+        <footer data-role="footer">
+            <div id="footer" class="header-footer">
+                @ 2019 2-1640 group
+            </div>
+        </footer>
     </section>
 
     <script src="js/coordinatorhome.js"></script>

@@ -117,7 +117,7 @@ function getSubmission($conn)
                                 </td>
                                 <td>' . $submission_date . '</td>
                                 <td>
-                                    <a href="updateComment.php?file='.$rowid.'&filename='.$submission.'&filetype='.$filetype.'" class="">
+                                    <a href="updateComment.php?file=' . $rowid . '&filename=' . $submission . '&filetype=' . $filetype . '" class="">
                                                 Comment
                                             </a>
                                 </td>
@@ -296,12 +296,14 @@ function getSelected($conn)
                     </div>
                 </div>
             </div>
+        </div>
 
-            <footer data-role="footer">
-                <div id="footer" class="header-footer">
-                    @ 2019 2-1640 group
-                </div>
-            </footer>
+
+        <footer data-role="footer">
+            <div id="footer" class="header-footer">
+                @ 2019 2-1640 group
+            </div>
+        </footer>
     </section>
 
     <script src="js/coordinatorhome.js"></script>
