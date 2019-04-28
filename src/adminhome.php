@@ -1,3 +1,39 @@
+<?php
+// Authentication
+require_once "authenticator.php";
+// Include config file
+require_once "config.php";
+
+function getUser($conn)
+{
+    $sql = "SELECT * FROM user;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $userid = $row['user_id'];
+            $userrole = $row['role_id'];
+            $username = $row['username'];
+            $password = $row['password'];
+            $userfaculty = $row['faculty_id'];
+            
+            echo '<tr>
+                                            <td>'.$userid.'</td>
+                                            <td>'.$userrole.'</td>
+                                            <td>'.$userfaculty.'</td>
+                                            <td>'.$username.'</td>
+                                            <td>'.$password.'</td>
+                                            <td>
+                                                <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>';
+        }
+    }
+}
+
+?>
 <!doctype html>
 
 <html lang="en">
@@ -80,10 +116,14 @@
                                             <th>Username</th>
                                             <th>Password</th>
                                             <th>Delete</th>
-                                            <th>Update</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody class="userTable">
+                                        <?php
+                                        getUser($conn);
+                                        ?>
+<!--
                                         <tr>
                                             <td>1</td>
                                             <td>1</td>
@@ -95,10 +135,8 @@
                                                     Delete
                                                 </a>
                                             </td>
-                                            <td>
-                                                <a href="#">Update</a>
-                                            </td>
                                         </tr>
+-->
                                     </tbody>
                                 </table>
                             </div>

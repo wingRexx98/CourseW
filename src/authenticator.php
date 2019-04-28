@@ -9,7 +9,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         // Set location according to role
         switch ($_SESSION["role"]) {
             case 5:
-                if ($current_page != "studenthome") {
+                if (!($current_page = "studenthome" or $current_page = "viewComment")) {
                     die("Unauthorized access.");
                 }
                 break;
@@ -19,18 +19,13 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 }
                 break;
             case 3:
-                if ($current_page != "coordinatorhome") {
+                if (!($current_page = "coordinatorhome" or $current_page = "updateComment" or $current_page = "commentDelete")) {
                     die("Unauthorized access.");
                 }
                 break;
                 //            case 2:
                 //            if ($current_page != "studenthome"){die("Unauthorized access.");}
                 //        break;
-            case 1:
-                if ($current_page != "studenthome") {
-                    die("Unauthorized access.");
-                }
-                break;
             default:
                 break;
         }
