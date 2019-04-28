@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Authentication
 require_once "authenticator.php";
 // Include config file
