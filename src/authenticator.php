@@ -14,7 +14,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 }
                 break;
             case 4:
-                if ($current_page != "manager") {
+                if (!($current_page != "manager"or $current_page = "viewComment")) {
                     die("Unauthorized access.");
                 }
                 break;

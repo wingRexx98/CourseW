@@ -24,11 +24,73 @@ function getUser($conn)
                                             <td>'.$username.'</td>
                                             <td>'.$password.'</td>
                                             <td>
-                                                <a href="#" class="getRowID" data-toggle="modal" data-target="#deleteModal" data-row-id="1">
-                                                    Delete
-                                                </a>
+                                                <a href="adminDelete.php?type=user&id='.$userid.'">Delete</a>
                                             </td>
                                         </tr>';
+        }
+    }
+}
+
+function getRole($conn)
+{
+    $sql = "SELECT * FROM role;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $rolename = $row['role_name'];
+            $roleid = $row['role_id'];
+            echo '<tr>
+                                        <td>'.$roleid.'</td>
+                                        <td>'.$rolename.'</td>
+                                        <td>
+                                            <a href="adminDelete.php?type=role&id='.$roleid.'">Delete</a>
+                                        </td>
+                                    </tr>';
+        }
+    }
+}
+
+function getFalc($conn)
+{
+    $sql = "SELECT * FROM faculty;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $facultyid = $row['faculty_id'];
+            $facultyname = $row['faculty_name'];
+            
+            echo '<tr>
+                                        <!--Place Holder-->
+                                        <td>'.$facultyid.'</td>
+                                        <td>'.$facultyname.'</td>
+                                        <td>
+                                            <a href="adminDelete.php?type=faculty&id='.$facultyid.'">Delete</a>
+                                        </td>
+                                    </tr>';
+        }
+    }
+}
+
+function getClosure($conn)
+{
+    $sql = "SELECT * FROM closure;";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $closure_id = $row['closure_id'];
+            $academic_year = $row['academic_year'];
+            $closure_date = $row['closure_date'];
+            
+            echo '<tr>
+                                        <td>'.$closure_id.'</td>
+                                        <td>'.$closure_date.'</td>
+                                        <td>'.$academic_year.'</td>
+                                        <td><a href="adminDelete.php?type=closure&id='.$closure_id.'">Delete</a>
+                                        </td>
+                                    </tr>';
         }
     }
 }
@@ -148,19 +210,19 @@ function getUser($conn)
                                     <h3 class="card-title">Add a new user</h3>
                                 </label>
                                 <div class="card-text">
-                                    <form>
+                                    <form action="adminAdd.php" method="post">
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control" name="username" id="username" />
+                                            <input type="text" class="form-control" name="username" id="username" required/>
                                         </div>
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="text" class="form-control" name="password" id="password" />
+                                            <input type="text" class="form-control" name="password" id="password" required/>
                                         </div>
                                         <div data-role="fieldcontain" class="form-group">
-                                            <label for="select" class="select">Choose Role:</label>
+                                            <label for="role" class="select">Choose Role:</label>
                                             <!--Get role name from db-->
-                                            <select id="select" class="form-control" name="select">
+                                            <select id="select" class="form-control" name="role" required>
                                                 <option value="1">Student</option>
                                                 <option value="2">Coordinator</option>
                                                 <option value="3">Manager</option>
@@ -169,13 +231,13 @@ function getUser($conn)
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="select" class="select">Choose Faculty:</label>
                                             <!--Get faculty name from db-->
-                                            <select id="select" class="form-control" name="select">
+                                            <select id="select" class="form-control" name="select" required>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
                             </div>
@@ -196,6 +258,10 @@ function getUser($conn)
                                         <th>Delete</th>
                                     </tr>
                                     <!--Place Holder-->
+                                    <?php
+                                    getRole($conn);
+                                    ?>
+<!--
                                     <tr>
                                         <td>1</td>
                                         <td>asd</td>
@@ -203,6 +269,7 @@ function getUser($conn)
                                             <a href="#">Delete</a>
                                         </td>
                                     </tr>
+-->
                                 </table>
                             </div>
                         </div>
@@ -213,12 +280,12 @@ function getUser($conn)
                                     <h3 class="card-title">Add a new role</h3>
                                 </label>
                                 <div class="card-text">
-                                    <form>
+                                    <form action="adminAdd.php" method="post">
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="rolename">Role Name</label>
                                             <input type="text" class="form-control" name="rolename" id="rolename" />
                                         </div>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
                             </div>
@@ -238,14 +305,19 @@ function getUser($conn)
                                         <th>Faculty Name</th>
                                         <th>Delete</th>
                                     </tr>
+                                    <?php
+                                    getFalc($conn);
+                                    ?>
+<!--
                                     <tr>
-                                        <!--Place Holder-->
+                                        Place Holder
                                         <td>1</td>
                                         <td>1</td>
                                         <td>
                                             <a href="#">Delete</a>
                                         </td>
                                     </tr>
+-->
                                 </table>
                             </div>
                         </div>
@@ -257,12 +329,12 @@ function getUser($conn)
                                     <h3 class="card-title">Add a new faculty</h3>
                                 </label>
                                 <div class="card-text">
-                                    <form>
+                                    <form action="adminAdd.php" method="post">
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="facultyname">Faculty Name</label>
                                             <input type="text" class="form-control" name="facultyname" id="facultyname" />
                                         </div>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
 
@@ -285,7 +357,10 @@ function getUser($conn)
                                         <th>Academic Year</th>
                                         <th>Delete</th>
                                     </tr>
-                                    <!--Place Holder-->
+                                    <?php
+                                    getClosure($conn);
+                                    ?>
+<!--
                                     <tr>
                                         <td>1</td>
                                         <td>1/1/1111</td>
@@ -293,6 +368,7 @@ function getUser($conn)
                                         <td><a href="#">Delete</a>
                                         </td>
                                     </tr>
+-->
                                 </table>
                             </div>
                         </div>
@@ -304,12 +380,12 @@ function getUser($conn)
                                     <h3 class="card-title">Add a new date</h3>
                                 </label>
                                 <div class="card-text">
-                                    <form>
+                                    <form action="adminAdd.php" method="post">
                                         <div data-role="fieldcontain" class="form-group">
                                             <label for="closuredate">Closure Date:</label>
                                             <input type="date" class="form-control" name="closuredate" id="closuredate" />
                                         </div>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </form>
                                 </div>
                             </div>
