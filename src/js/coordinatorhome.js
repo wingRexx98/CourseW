@@ -28,7 +28,7 @@ $(document).on("click", ".unpublishBtn", function () {
     }).done(function (msg) {
 //        alert("Data Saved: " + msg);
     });
-    location.reload();
+location.href = location.href;
 
 });
 
@@ -43,7 +43,7 @@ $(document).on("click", ".formSubmit", function () {
     }).done(function (msg) {
 //        alert("Data Saved: " + msg);
     });
-    location.reload();
+ location.href = location.href;
 
 });
 

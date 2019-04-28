@@ -13,7 +13,7 @@ $(document).on("click", ".deleteBtn", function () {
     }).done(function (msg) {
 //                alert("Data Saved: " + msg);
     });
-    location.reload();
+    location.href = location.href;
 });
 
 $(document).on("click", ".zipDownload1", function () {
