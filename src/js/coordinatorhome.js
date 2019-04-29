@@ -3,34 +3,74 @@ $(document).on("click", ".buttonComment", function () {
     $(".modal-body #rowID").val(rowID);
 });
 
-$(document).on("click", ".publishBtn", function () {
-    $.ajax({
+$(document).ready(function() {
+   $('.publishBtn').each(function() {
+      $(this).click(function(){
+          $.ajax({
         type: "POST",
         url: "coordinatorhome.php",
         data: {
             name: 'publish',
-            id: $('.publishBtn').val()
+            id: $(this).attr('value')
         }
     }).done(function (msg) {
 //        alert("Data Saved: " + msg);
     });
-    location.reload();
+    location.reload(true);
+    // location.href = location.href;
+      });
+   });
 });
 
-$(document).on("click", ".unpublishBtn", function () {
-    $.ajax({
+$(document).ready(function() {
+   $('.unpublishBtn').each(function() {
+      $(this).click(function(){
+          $.ajax({
         type: "POST",
         url: "coordinatorhome.php",
         data: {
             name: 'unpublish',
-            id: $('.unpublishBtn').val()
+            id: $(this).attr('value')
         }
     }).done(function (msg) {
 //        alert("Data Saved: " + msg);
     });
-location.href = location.href;
-
+    location.reload(true);
+    // location.href = location.href;
+      });
+   });
 });
+   
+// $(document).on("click", ".publishBtn", function () {
+//     alert(this.val());
+//     $.ajax({
+//         type: "POST",
+//         url: "coordinatorhome.php",
+//         data: {
+//             name: 'publish',
+//             id: this.val()
+//         }
+//     }).done(function (msg) {
+// //        alert("Data Saved: " + msg);
+//     });
+//     location.href = location.href;
+// });
+
+// $(document).on("click", ".unpublishBtn", function () {
+//     alert(this.val());
+//     $.ajax({
+//         type: "POST",
+//         url: "coordinatorhome.php",
+//         data: {
+//             name: 'unpublish',
+//             id: this.val()
+//         }
+//     }).done(function (msg) {
+// //        alert("Data Saved: " + msg);
+//     });
+// location.href = location.href;
+
+// });
 
 $(document).on("click", ".formSubmit", function () {
     $.ajax({

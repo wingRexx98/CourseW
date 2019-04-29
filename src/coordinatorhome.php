@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Authentication
 require_once "authenticator.php";
 // Include config file
@@ -7,7 +8,6 @@ require_once "config.php";
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
-    echo ($name);
     if ($name == "publish") {
         publish($id, $conn);
     } else {
